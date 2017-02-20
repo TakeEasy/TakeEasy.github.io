@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="YEAR's Blog">
 <meta property="og:description" content="人生苦短,我玩Python">
 <meta property="og:image" content="http://TakeEasy.github.io/img/12.png">
-<meta property="og:updated_time" content="2016-12-17T15:30:25.816Z">
+<meta property="og:updated_time" content="2016-12-21T03:37:00.116Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="玩蛇笔记之Python中的字符编码">
 <meta name="twitter:description" content="人生苦短,我玩Python">
@@ -390,7 +390,7 @@
 <li>ASCII编码,,它规定1个字节8个比特位代表1个字符的编码,也就是“00000000”这么宽,一个一个字节的解读.例如:01000001表示大写字母A,有时我们会“偷懒”的用65这个十进制来表示A在ASCII中的编码.8个比特位,可以没有重复的表示2的8次方也就是255个字符.</li>
 <li>后来,计算机得到普及,中文,日文,韩文等等国家的文字需要在计算机内表示,ASCII的255位远远不够,于是标准组织制定出了叫做UNICODE的万国码,它规定任何一个字符(不管哪国的)至少以2个字节表示,可以更多.其中,英文字母就是用2个字节,而汉字是3个字节.这个编码虽然很好,满足了所有人的要求,但是它不兼容ASCII,同时还占用较多的空间和内存.因为,在计算机世界更多的字符是英文字母,明明可以1个字节就能够表示,非要用2个.</li>
 <li>于是UTF-8编码应运而生,它规定英文字母系列用1个字节表示,汉字用3个字节表示等等.因此,它兼容ASCII,可以解码早期的文档.UTF-8很快就得到了广泛的应用.</li>
-<li>我国也有自己创造的编码,像GBK,GB2312,BIG5,不像聊他们了,已经走远了.</li>
+<li>我国也有自己创造的编码,像GBK,GB2312,BIG5,不想聊他们了,已经走远了.</li>
 </ul>
 <hr>
 <h3 id="回到bytes类型和str类型本身"><a href="#回到bytes类型和str类型本身" class="headerlink" title="回到bytes类型和str类型本身"></a>回到bytes类型和str类型本身</h3><ul>
@@ -480,6 +480,22 @@ b&apos;\xe4\xb8\xad\xe6\x96\x87&apos;
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/20/来玩渗透之从sql注入开始/" rel="prev" title="来玩渗透之从sql注入开始">
+                来玩渗透之从sql注入开始 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
       
       
@@ -550,7 +566,7 @@ b&apos;\xe4\xb8\xad\xe6\x96\x87&apos;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -558,7 +574,7 @@ b&apos;\xe4\xb8\xad\xe6\x96\x87&apos;
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -567,7 +583,7 @@ b&apos;\xe4\xb8\xad\xe6\x96\x87&apos;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -634,7 +650,7 @@ b&apos;\xe4\xb8\xad\xe6\x96\x87&apos;
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
