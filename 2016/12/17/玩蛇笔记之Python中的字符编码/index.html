@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="YEAR's Blog">
 <meta property="og:description" content="人生苦短,我玩Python">
 <meta property="og:image" content="https://TakeEasy.github.io/img/12.png">
-<meta property="og:updated_time" content="2016-12-21T03:37:00.116Z">
+<meta property="og:updated_time" content="2017-03-22T10:53:34.517Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="玩蛇笔记之Python中的字符编码">
 <meta name="twitter:description" content="人生苦短,我玩Python">
@@ -378,6 +378,10 @@
 </blockquote>
 <span itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"><img itemprop="url image" src="/img/12.png" class="full-image" alt="..." title="Python"><meta itemprop="width" content="auto"><meta itemprop="height" content="auto"></span>
 <a id="more"></a>
+<blockquote>
+<p>2017.3.21更新:URL编码和html转译序列相关</p>
+</blockquote>
+<hr>
 <h3 id="Python3中的bytes类型和str类型"><a href="#Python3中的bytes类型和str类型" class="headerlink" title="Python3中的bytes类型和str类型"></a>Python3中的bytes类型和str类型</h3><ul>
 <li>Python3的一个新特性是对字符串和二进制流数据进行了区分,文本都是Unicode,由str类型表示,二进制数据则由bytes类型表示.</li>
 <li>Python3不允许以任何<strong>隐式</strong>的方式混用str和bytes类型,这意味着你不能拼接字符串和字节流,也不能在字节流里搜索字符串,也不能将字符串传入参数为字节流的函数,反之都亦然.</li>
@@ -432,6 +436,12 @@ b&apos;\xe4\xb8\xad\xe6\x96\x87&apos;
 &gt;&gt;&gt; type(s1)
 &lt;class &apos;str&apos;&gt;
 </code></pre></li>
+</ul>
+<hr>
+<h3 id="URL编码以及html转译序列相关"><a href="#URL编码以及html转译序列相关" class="headerlink" title="URL编码以及html转译序列相关"></a>URL编码以及html转译序列相关</h3><ul>
+<li>最近在玩python爬虫和渗透测试的时候会遇到很多url编码和html转译序列相关的问题,我觉得如果对编码,url编码,html转译序列理解不清楚的话会将这几个东西弄得非常混乱,有必要梳理一下</li>
+<li>其实很简单,首先通过上面的笔记就可以了解utf-8等编码,url编码存在的原因是在url中有一些特殊字符时候特殊含义的不能直接以本意传输包括中文等等,所以就需要进行url编码,url编码会将这些特殊字符换成以<code>%</code>开头后连两位十六进制组成,如果是中文会先进行utf-8或者别的编码然后将编码后的十六进制每两位加<code>%</code>变成url编码例如<code>周易</code>经过url编码后就会变成<code>%E5%91%A8%E6%98%93</code></li>
+<li>最后要提一下html转译序列,这个玩意说白了和编码没有关系,存在的原因是html中有很多特殊字符有特殊含义,为了不让浏览器误把内容当成需要解析的内容而将这些特殊字符转译成以<code>&amp;</code>开头的东西,中文也一样不过以<code>&amp;#</code>开头后接当前页面编码,这里分两种情况<code>&amp;#x</code>后面会接十六进制,<code>&amp;#</code>后面接十进制.还有一种直接指定编码列如<code>\u</code>开头的就是unicode编码不受页面编码影响.</li>
 </ul>
 
       
@@ -629,7 +639,7 @@ b&apos;\xe4\xb8\xad\xe6\x96\x87&apos;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python3中的bytes类型和str类型"><span class="nav-number">1.</span> <span class="nav-text">Python3中的bytes类型和str类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符编码的那些事"><span class="nav-number">2.</span> <span class="nav-text">字符编码的那些事</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回到bytes类型和str类型本身"><span class="nav-number">3.</span> <span class="nav-text">回到bytes类型和str类型本身</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python3中的bytes类型和str类型"><span class="nav-number">1.</span> <span class="nav-text">Python3中的bytes类型和str类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符编码的那些事"><span class="nav-number">2.</span> <span class="nav-text">字符编码的那些事</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回到bytes类型和str类型本身"><span class="nav-number">3.</span> <span class="nav-text">回到bytes类型和str类型本身</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL编码以及html转译序列相关"><span class="nav-number">4.</span> <span class="nav-text">URL编码以及html转译序列相关</span></a></li></ol></div>
             
 
           </div>
