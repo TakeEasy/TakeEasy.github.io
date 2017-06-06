@@ -13,8 +13,17 @@
 
 
 
+
+
+
+
+
+
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
 
 
 
@@ -114,8 +123,8 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '6362469758729717000',
-      author: '博主大人'
+      userId: 'undefined',
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -135,7 +144,7 @@
 
 
 
-  <title> 玩蛇笔记之Python中的文件操作 | YEAR's Blog </title>
+  <title>玩蛇笔记之Python中的文件操作 | YEAR's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -151,34 +160,43 @@
 
 
 
+
+
+
+
+
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">YEAR's Blog</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YEAR's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">~~~~~</p>
+      
   </div>
-  <p class="site-subtitle">~~~~~</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -256,34 +274,24 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://TakeEasy.github.io/2017/06/04/玩蛇笔记之Python中的文件操作/">
+    <link itemprop="mainEntityOfPage" href="https://TakeEasy.github.io/2017/06/04/玩蛇笔记之Python中的文件操作/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="YEAR">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/img/touxiang.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YEAR's Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YEAR's Blog" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YEAR">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/touxiang.jpg">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YEAR's Blog">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                玩蛇笔记之Python中的文件操作
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">玩蛇笔记之Python中的文件操作</h1>
         
 
         <div class="post-meta">
@@ -292,8 +300,8 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-04T19:27:03+08:00">
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-04T19:27:03+08:00">
                 2017-06-04
               </time>
             
@@ -305,11 +313,13 @@
 
           
             <span class="post-category" >
+            
               <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/开发/" itemprop="url" rel="index">
@@ -338,13 +348,14 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2017/06/04/玩蛇笔记之Python中的文件操作/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/04/玩蛇笔记之Python中的文件操作/" itemprop="commentCount"></span>
                 </a>
               </span>
             
-          
-
           
 
           
@@ -354,9 +365,11 @@
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
           
 
           
@@ -366,7 +379,6 @@
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -465,6 +477,12 @@ a+,写读 打开的同时把指针移到最后.
       
     </div>
 
+    <div>
+      
+        
+
+      
+    </div>
 
     <footer class="post-footer">
       
@@ -475,6 +493,10 @@ a+,写读 打开的同时把指针移到最后.
             <a href="/tags/文件操作/" rel="tag"># 文件操作</a>
           
         </div>
+      
+
+      
+      
       
 
       
@@ -510,9 +532,6 @@ a+,写读 打开的同时把指针移到最后.
 
           </div>
           
-
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
 
 
           
@@ -559,19 +578,26 @@ a+,写读 打开的同时把指针移到最后.
                src="/img/touxiang.jpg"
                alt="YEAR" />
           <p class="site-author-name" itemprop="name">YEAR</p>
-          <p class="site-description motion-element" itemprop="description">行则将至</p>
+           
+              <p class="site-description motion-element" itemprop="description">行则将至</p>
+          
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">7</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
 
           
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -579,8 +605,10 @@ a+,写读 打开的同时把指针移到最后.
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -635,6 +663,8 @@ a+,写读 打开的同时把指针移到最后.
       <!--/noindex-->
       
 
+      
+
     </div>
   </aside>
 
@@ -662,9 +692,13 @@ a+,写读 打开的同时把指针移到最后.
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -684,6 +718,15 @@ a+,写读 打开的同时把指针移到最后.
 
 
   
+
+
+
+
+
+
+
+
+
 
 
 
@@ -758,11 +801,14 @@ a+,写读 打开的同时把指针移到最后.
   </script>
 
   
-    
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
+
+
+
+
+
+
+
+
 
 
 
@@ -772,9 +818,10 @@ a+,写读 打开的同时把指针移到最后.
 
 
   
-  
 
-  
+
+
+
 
   
 
@@ -889,6 +936,11 @@ a+,写读 打开的同时把指针移到最后.
 
   
 
+  
+
+  
+
+  
 
 </body>
 </html>
