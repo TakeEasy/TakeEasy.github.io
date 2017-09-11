@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="YEAR&#39;s Blog">
 <meta property="og:description" content="人生苦短,我玩Python">
 <meta property="og:image" content="https://takeeasy.github.io/img/12.png">
-<meta property="og:updated_time" content="2017-07-04T16:13:21.986Z">
+<meta property="og:updated_time" content="2017-07-04T16:17:33.482Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="玩蛇笔记WEB篇之什么是WEB框架">
 <meta name="twitter:description" content="人生苦短,我玩Python">
@@ -426,7 +426,7 @@
 <hr>
 <h3 id="自己写一个简易的WEB框架"><a href="#自己写一个简易的WEB框架" class="headerlink" title="自己写一个简易的WEB框架"></a>自己写一个简易的WEB框架</h3><ul>
 <li>现在主流的WEB框架用的是MVC架构,<strong>models,views,control</strong>,将逻辑处理流程分层为这三个层次,我们要写自己的mvc框架也要遵循这个分层</li>
-<li>首先是views层,也就是模板HTML文件,作用是当control层调度函数时需要从views层中的模板html来生成最终的html页面返回,所以views层里的html模板文件大多添加了框架的脚本语言,生成时框架会对内部的脚本语言进行解析,类似JSP,ASP</li>
+<li>首先是views层,也就是模板HTML文件,作用是当control层调度函数时需要从views层中的模板html来生成最终的html页面返回,所以views层里的html模板文件大多添加了框架的模板语言,生成时框架会对内部的模板语言进行解析,动态的生成内容,类似JSP,ASP,,pyhton里有<strong>jinjia2模块</strong></li>
 <li>然后是control层,这一层主要是各种函数,来决定返回什么样的结果.这里就调用了view层里的模板html文件.<figure class="highlight python"><figcaption><span>urls.py</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author:YEAR</span></div><div class="line"><span class="keyword">import</span> Controllers</div><div class="line"></div><div class="line">URLS =&#123;</div><div class="line">    <span class="string">"/new"</span>:Controllers.new,</div><div class="line">    <span class="string">'/index'</span>:Controllers.index,</div><div class="line">&#125;</div><div class="line"></div></pre></td></tr></table></figure>
 <figure class="highlight python"><figcaption><span>controllers.py</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author:YEAR</span></div><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">new</span><span class="params">()</span>:</span></div><div class="line">    f=open(os.path.join(<span class="string">'Views'</span>,<span class="string">'new.html'</span>),<span class="string">'r'</span>)</div><div class="line">    data=f.read()</div><div class="line">    f.close()</div><div class="line">    <span class="keyword">return</span> data</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'index'</span></div><div class="line"></div></pre></td></tr></table></figure></li>
 <li>Models层 是用于数据库交互于抽象的,也是control层在生成数据时需要用到的.</li>
@@ -504,6 +504,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/06/玩蛇笔记WEB篇之Tornado/" rel="prev" title="玩蛇笔记WEB篇之Tornado">
+                玩蛇笔记WEB篇之Tornado <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -589,7 +593,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -600,7 +604,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -611,7 +615,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

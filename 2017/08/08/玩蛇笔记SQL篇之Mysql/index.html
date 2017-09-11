@@ -1,0 +1,1116 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Mysql," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/touxiang.jpg?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="人生苦短,我玩Python">
+<meta name="keywords" content="Mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="玩蛇笔记SQL篇之Mysql">
+<meta property="og:url" content="https://TakeEasy.github.io/2017/08/08/玩蛇笔记SQL篇之Mysql/index.html">
+<meta property="og:site_name" content="YEAR&#39;s Blog">
+<meta property="og:description" content="人生苦短,我玩Python">
+<meta property="og:image" content="https://takeeasy.github.io/img/12.png">
+<meta property="og:updated_time" content="2017-09-11T11:56:38.664Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="玩蛇笔记SQL篇之Mysql">
+<meta name="twitter:description" content="人生苦短,我玩Python">
+<meta name="twitter:image" content="https://takeeasy.github.io/img/12.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://TakeEasy.github.io/2017/08/08/玩蛇笔记SQL篇之Mysql/"/>
+
+
+
+
+
+  <title> 玩蛇笔记SQL篇之Mysql | YEAR's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YEAR's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">~~~~~</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://TakeEasy.github.io/2017/08/08/玩蛇笔记SQL篇之Mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YEAR">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YEAR's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                玩蛇笔记SQL篇之Mysql
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-08T20:31:44+08:00">
+                2017-08-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发/Python/SQL/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/08/玩蛇笔记SQL篇之Mysql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/08/玩蛇笔记SQL篇之Mysql/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/08/08/玩蛇笔记SQL篇之Mysql/" class="leancloud_visitors" data-flag-title="玩蛇笔记SQL篇之Mysql">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote class="blockquote-center"><p>人生苦短,我玩Python </p>
+</blockquote>
+<span itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"><img itemprop="url image" src="/img/12.png" class="full-image" alt="..." title="Python"><meta itemprop="width" content="auto"><meta itemprop="height" content="auto"></span>
+<a id="more"></a>
+<blockquote>
+<p>SQL基本和Mysql的使用</p>
+</blockquote>
+<hr>
+<h3 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h3><p>这个没什么好说的.安装,注意root用户的密码配置就可以了<br>启动Mysql的后台服务.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysqld</div></pre></td></tr></table></figure><br>使用命令链接mysql服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -u root -p</div></pre></td></tr></table></figure><br>根据不同的操作系统平台,有不同的安装方式和过程..没什么好说的.无非就是添加环境变量什么的.</p>
+<hr>
+<h3 id="数据库的操作"><a href="#数据库的操作" class="headerlink" title="数据库的操作"></a>数据库的操作</h3><ol>
+<li><p>显示数据库</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SHOW DATABASES;</div></pre></td></tr></table></figure>
+<p> Mysql默认数据库:</p>
+<ul>
+<li>mysql-用户权限相关数据</li>
+<li>test-用于用户测试数据</li>
+<li>information_schema-Mysql本身架构相关数据</li>
+</ul>
+</li>
+<li><p>创建数据库</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># utf-8</div><div class="line">CREATE DATABASE 数据库名称 DEFAULT CHARSET utf8 COLLATE utf8_general_ci;</div><div class="line"># gbk</div><div class="line">CREATE DATABASE 数据库名称 DEFAULT CHARACTER SET gbk COLLATE gbk_chinese_ci;</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用数据库以及显示数据库中的表</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">USE db_name;</div><div class="line">SHOW TABLES;</div></pre></td></tr></table></figure>
+</li>
+<li><p>授权管理</p>
+ <figure class="highlight plain"><figcaption><span>基本命令</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">show grants for &apos;用户&apos;@&apos;IP地址&apos;                  -- 查看权限</div><div class="line">grant  权限 on 数据库.表 to   &apos;用户&apos;@&apos;IP地址&apos;      -- 授权</div><div class="line">revoke 权限 on 数据库.表 from &apos;用户&apos;@&apos;IP地址&apos;      -- 取消权限</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>权限相关</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">all privileges  除grant外的所有权限</div><div class="line">select          仅查权限</div><div class="line">select,insert   查和插入权限</div><div class="line">...</div><div class="line">usage                   无访问权限</div><div class="line">alter                   使用alter table</div><div class="line">alter routine           使用alter procedure和drop procedure</div><div class="line">create                  使用create table</div><div class="line">create routine          使用create procedure</div><div class="line">create temporary tables 使用create temporary tables</div><div class="line">create user             使用create user、drop user、rename user和revoke  all privileges</div><div class="line">create view             使用create view</div><div class="line">delete                  使用delete</div><div class="line">drop                    使用drop table</div><div class="line">execute                 使用call和存储过程</div><div class="line">file                    使用select into outfile 和 load data infile</div><div class="line">grant option            使用grant 和 revoke</div><div class="line">index                   使用index</div><div class="line">insert                  使用insert</div><div class="line">lock tables             使用lock table</div><div class="line">process                 使用show full processlist</div><div class="line">select                  使用select</div><div class="line">show databases          使用show databases</div><div class="line">show view               使用show view</div><div class="line">update                  使用update</div><div class="line">reload                  使用flush</div><div class="line">shutdown                使用mysqladmin shutdown(关闭MySQL)</div><div class="line">super                   􏱂􏰈使用change master、kill、logs、purge、master和set global。还允许mysqladmin􏵗􏵘􏲊􏲋调试登陆</div><div class="line">replication client      服务器位置的访问</div><div class="line">replication slave       由复制从属使用    </div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>数据库相关</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">对于目标数据库以及内部其他：</div><div class="line">数据库名.*           数据库中的所有</div><div class="line">数据库名.表          指定数据库中的某张表</div><div class="line">数据库名.存储过程     指定数据库中的存储过程</div><div class="line">*.*                所有数据库</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>用户和IP相关</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">用户名@IP地址         用户只能在改IP下才能访问</div><div class="line">用户名@192.168.1.%   用户只能在改IP段下才能访问(通配符%表示任意)</div><div class="line">用户名@%             用户可以再任意IP下访问(默认IP地址为%)</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>实例</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">grant all privileges on db1.tb1 TO &apos;用户名&apos;@&apos;IP&apos;</div><div class="line"></div><div class="line">grant select on db1.* TO &apos;用户名&apos;@&apos;IP&apos;</div><div class="line"></div><div class="line">grant select,insert on *.* TO &apos;用户名&apos;@&apos;IP&apos;</div><div class="line"></div><div class="line">revoke select on db1.tb1 from &apos;用户名&apos;@&apos;IP&apos;</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>特殊</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">flush privileges，将数据读取到内存中，从而立即生效。</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>忘记密码</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># 启动免授权服务端</div><div class="line">mysqld --skip-grant-tables</div><div class="line"></div><div class="line"># 客户端</div><div class="line">mysql -u root -p</div><div class="line"></div><div class="line"># 修改用户名密码</div><div class="line">update mysql.user set authentication_string=password(&apos;666&apos;) where user=&apos;root&apos;;</div><div class="line">flush privileges;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h3 id="表的基本操作"><a href="#表的基本操作" class="headerlink" title="表的基本操作"></a>表的基本操作</h3><ol>
+<li><p>创建表</p>
+ <figure class="highlight plain"><figcaption><span>创建表</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">create table 表名(</div><div class="line">    列名  类型  是否可以为空，</div><div class="line">    列名  类型  是否可以为空</div><div class="line">)ENGINE=InnoDB DEFAULT CHARSET=utf8</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>是否可以为空</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">是否可空，null表示空，非字符串</div><div class="line">not null    - 不可空</div><div class="line">null        - 可空</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>默认值</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">默认值，创建列时可以指定默认值，当插入数据时如果未主动设置，则自动添加默认值</div><div class="line">create table tb1(</div><div class="line">    nid int not null defalut 2,</div><div class="line">    num int not null</div><div class="line">)</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>自增</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">自增，如果为某列设置自增列，插入数据时无需设置此列，默认将自增（表中只能有一个自增列）</div><div class="line"> create table tb1(</div><div class="line">     nid int not null auto_increment primary key,</div><div class="line">     num int null</div><div class="line"> )</div><div class="line"> 或</div><div class="line"> create table tb1(</div><div class="line">     nid int not null auto_increment,</div><div class="line">     num int null,</div><div class="line">     index(nid)</div><div class="line"> )</div><div class="line"> 注意：1、对于自增列，必须是索引（含主键）。</div><div class="line">      2、对于自增可以设置步长和起始值</div><div class="line">          show session variables like &apos;auto_inc%&apos;;</div><div class="line">          set session auto_increment_increment=2;</div><div class="line">          set session auto_increment_offset=10;</div><div class="line"></div><div class="line">          shwo global  variables like &apos;auto_inc%&apos;;</div><div class="line">          set global auto_increment_increment=2;</div><div class="line">          set global auto_increment_offset=10;</div><div class="line"> </div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>主键</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">主键，一种特殊的唯一索引，不允许有空值，如果主键使用单个列，则它的值必须唯一，如果是多列，则其组合必须唯一。</div><div class="line">create table tb1(</div><div class="line">    nid int not null auto_increment primary key,</div><div class="line">    num int null</div><div class="line">)</div><div class="line">或</div><div class="line">create table tb1(</div><div class="line">    nid int not null,</div><div class="line">    num int not null,</div><div class="line">    primary key(nid,num)</div><div class="line">)</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>外键</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">外键，一个特殊的索引，只能是指定内容</div><div class="line">creat table color(</div><div class="line">    nid int not null primary key,</div><div class="line">    name char(16) not null</div><div class="line">)</div><div class="line"></div><div class="line">create table fruit(</div><div class="line">    nid int not null primary key,</div><div class="line">    smt char(32) null ,</div><div class="line">    color_id int not null,</div><div class="line">    constraint fk_cc foreign key (color_id) references color(nid)</div><div class="line">)</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除表</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">drop table 表名</div></pre></td></tr></table></figure>
+</li>
+<li><p>清空表</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">delete from 表名</div><div class="line">truncate table 表名</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改表</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">添加列：alter table 表名 add 列名 类型</div><div class="line">删除列：alter table 表名 drop column 列名</div><div class="line">修改列：</div><div class="line">        alter table 表名 modify column 列名 类型;  -- 类型</div><div class="line">        alter table 表名 change 原列名 新列名 类型; -- 列名，类型</div><div class="line">  </div><div class="line">添加主键：</div><div class="line">        alter table 表名 add primary key(列名);</div><div class="line">删除主键：</div><div class="line">        alter table 表名 drop primary key;</div><div class="line">        alter table 表名  modify  列名 int, drop primary key;</div><div class="line">  </div><div class="line">添加外键：alter table 从表 add constraint 外键名称（形如：FK_从表_主表） foreign key 从表(外键字段) references 主表(主键字段);</div><div class="line">删除外键：alter table 表名 drop foreign key 外键名称</div><div class="line">  </div><div class="line">修改默认值：ALTER TABLE testalter_tbl ALTER i SET DEFAULT 1000;</div><div class="line">删除默认值：ALTER TABLE testalter_tbl ALTER i DROP DEFAULT;</div></pre></td></tr></table></figure>
+</li>
+<li><p>基本数据类型</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div></pre></td><td class="code"><pre><div class="line">    </div><div class="line">bit[(M)]</div><div class="line">二进制位（101001），m表示二进制位的长度（1-64），默认m＝1</div><div class="line"></div><div class="line">tinyint[(m)] [unsigned] [zerofill]</div><div class="line"></div><div class="line">    小整数，数据类型用于保存一些范围的整数数值范围：</div><div class="line">    有符号：</div><div class="line">        -128 ～ 127.</div><div class="line">    无符号：</div><div class="line">        0 ～ 255</div><div class="line"></div><div class="line">    特别的： MySQL中无布尔值，使用tinyint(1)构造。</div><div class="line"></div><div class="line">int[(m)][unsigned][zerofill]</div><div class="line"></div><div class="line">    整数，数据类型用于保存一些范围的整数数值范围：</div><div class="line">        有符号：</div><div class="line">            -2147483648 ～ 2147483647</div><div class="line">        无符号：</div><div class="line">            0 ～ 4294967295</div><div class="line"></div><div class="line">    特别的：整数类型中的m仅用于显示，对存储范围无限制。例如： int(5),当插入数据2时，select 时数据显示为： 00002</div><div class="line"></div><div class="line">bigint[(m)][unsigned][zerofill]</div><div class="line">    大整数，数据类型用于保存一些范围的整数数值范围：</div><div class="line">        有符号：</div><div class="line">            -9223372036854775808 ～ 9223372036854775807</div><div class="line">        无符号：</div><div class="line">            0  ～  18446744073709551615</div><div class="line"></div><div class="line">decimal[(m[,d])] [unsigned] [zerofill]</div><div class="line">    准确的小数值，m是数字总个数（负号不算），d是小数点后个数。 m最大值为65，d最大值为30。</div><div class="line"></div><div class="line">    特别的：对于精确数值计算时需要用此类型</div><div class="line">           decaimal能够存储精确值的原因在于其内部按照字符串存储。</div><div class="line"></div><div class="line">FLOAT[(M,D)] [UNSIGNED] [ZEROFILL]</div><div class="line">    单精度浮点数（非准确小数值），m是数字总个数，d是小数点后个数。</div><div class="line">        无符号：</div><div class="line">            -3.402823466E+38 to -1.175494351E-38,</div><div class="line">            0</div><div class="line">            1.175494351E-38 to 3.402823466E+38</div><div class="line">        有符号：</div><div class="line">            0</div><div class="line">            1.175494351E-38 to 3.402823466E+38</div><div class="line"></div><div class="line">     --- 数值越大，越不准确 ---</div><div class="line"></div><div class="line">DOUBLE[(M,D)] [UNSIGNED] [ZEROFILL]</div><div class="line">    双精度浮点数（非准确小数值），m是数字总个数，d是小数点后个数。</div><div class="line"></div><div class="line">        无符号：</div><div class="line">            -1.7976931348623157E+308 to -2.2250738585072014E-308</div><div class="line">            0</div><div class="line">            2.2250738585072014E-308 to 1.7976931348623157E+308</div><div class="line">        有符号：</div><div class="line">            0</div><div class="line">            2.2250738585072014E-308 to 1.7976931348623157E+308</div><div class="line">    --- 数值越大，越不准确 ---</div><div class="line"></div><div class="line"></div><div class="line">char (m)</div><div class="line">    char数据类型用于表示固定长度的字符串，可以包含最多达255个字符。其中m代表字符串的长度。</div><div class="line">    PS: 即使数据小于m长度，也会占用m长度</div><div class="line">varchar(m)</div><div class="line">    varchars数据类型用于变长的字符串，可以包含最多达255个字符。其中m代表该数据类型所允许保存的字符串的最大长度，只要长度小于该最大值的字符串都可以被保存在该数据类型中。</div><div class="line"></div><div class="line">    注：虽然varchar使用起来较为灵活，但是从整个系统的性能角度来说，char数据类型的处理速度更快，有时甚至可以超出varchar处理速度的50%。因此，用户在设计数据库时应当综合考虑各方面的因素，以求达到最佳的平衡</div><div class="line"></div><div class="line">text</div><div class="line">    text数据类型用于保存变长的大字符串，可以组多到65535 (2**16 − 1)个字符。</div><div class="line"></div><div class="line">mediumtext</div><div class="line">    A TEXT column with a maximum length of 16,777,215 (2**24 − 1) characters.</div><div class="line"></div><div class="line">longtext</div><div class="line">    A TEXT column with a maximum length of 4,294,967,295 or 4GB (2**32 − 1) characters.</div><div class="line"></div><div class="line"></div><div class="line">enum</div><div class="line">    枚举类型，</div><div class="line">    An ENUM column can have a maximum of 65,535 distinct elements. (The practical limit is less than 3000.)</div><div class="line">    示例：</div><div class="line">        CREATE TABLE shirts (</div><div class="line">            name VARCHAR(40),</div><div class="line">            size ENUM(&apos;x-small&apos;, &apos;small&apos;, &apos;medium&apos;, &apos;large&apos;, &apos;x-large&apos;)</div><div class="line">        );</div><div class="line">        INSERT INTO shirts (name, size) VALUES (&apos;dress shirt&apos;,&apos;large&apos;), (&apos;t-shirt&apos;,&apos;medium&apos;),(&apos;polo shirt&apos;,&apos;small&apos;);</div><div class="line"></div><div class="line">set</div><div class="line">    集合类型</div><div class="line">    A SET column can have a maximum of 64 distinct members.</div><div class="line">    示例：</div><div class="line">        CREATE TABLE myset (col SET(&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;));</div><div class="line">        INSERT INTO myset (col) VALUES (&apos;a,d&apos;), (&apos;d,a&apos;), (&apos;a,d,a&apos;), (&apos;a,d,d&apos;), (&apos;d,a,d&apos;);</div><div class="line"></div><div class="line">DATE</div><div class="line">    YYYY-MM-DD（1000-01-01/9999-12-31）</div><div class="line"></div><div class="line">TIME</div><div class="line">    HH:MM:SS（&apos;-838:59:59&apos;/&apos;838:59:59&apos;）</div><div class="line"></div><div class="line">YEAR</div><div class="line">    YYYY（1901/2155）</div><div class="line"></div><div class="line">DATETIME</div><div class="line"></div><div class="line">    YYYY-MM-DD HH:MM:SS（1000-01-01 00:00:00/9999-12-31 23:59:59    Y）</div><div class="line"></div><div class="line">TIMESTAMP</div><div class="line"></div><div class="line">    YYYYMMDD HHMMSS（1970-01-01 00:00:00/2037 年某时）</div><div class="line">    </div><div class="line">    </div></pre></td></tr></table></figure>
+<p> 此外还有二进制数据：TinyBlob、Blob、MediumBlob、LongBlob 用于存储图片,音乐什么的.</p>
+</li>
+</ol>
+<hr>
+<h3 id="对表数据的操作"><a href="#对表数据的操作" class="headerlink" title="对表数据的操作"></a>对表数据的操作</h3><ol>
+<li>增加 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">insert into 表 (列名,列名...) values (值,值,值...)</div><div class="line">insert into 表 (列名,列名...) values (值,值,值...),(值,值,值...)</div><div class="line">insert into 表 (列名,列名...) select (列名,列名...) from 表</div></pre></td></tr></table></figure></li>
+<li>删除 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">delete from 表</div><div class="line">delete from 表 where id＝1 and name＝&apos;alex&apos;</div></pre></td></tr></table></figure></li>
+<li>修改 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">update 表 set name ＝ &apos;alex&apos; where id&gt;1</div></pre></td></tr></table></figure></li>
+<li>查找 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">select * from 表</div><div class="line">select * from 表 where id &gt; 1</div><div class="line">select nid,name,gender as gg from 表 where id &gt; 1</div></pre></td></tr></table></figure></li>
+<li>其他 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">a、条件</div><div class="line">    select * from 表 where id &gt; 1 and name != &apos;alex&apos; and num = 12;</div><div class="line"> </div><div class="line">    select * from 表 where id between 5 and 16;</div><div class="line"> </div><div class="line">    select * from 表 where id in (11,22,33)</div><div class="line">    select * from 表 where id not in (11,22,33)</div><div class="line">    select * from 表 where id in (select nid from 表)</div><div class="line"> </div><div class="line">b、通配符</div><div class="line">    select * from 表 where name like &apos;ale%&apos;  - ale开头的所有（多个字符串）</div><div class="line">    select * from 表 where name like &apos;ale_&apos;  - ale开头的所有（一个字符）</div><div class="line"> </div><div class="line">c、限制</div><div class="line">    select * from 表 limit 5;            - 前5行</div><div class="line">    select * from 表 limit 4,5;          - 从第4行开始的5行</div><div class="line">    select * from 表 limit 5 offset 4    - 从第4行开始的5行</div><div class="line"> </div><div class="line">d、排序</div><div class="line">    select * from 表 order by 列 asc              - 根据 “列” 从小到大排列</div><div class="line">    select * from 表 order by 列 desc             - 根据 “列” 从大到小排列</div><div class="line">    select * from 表 order by 列1 desc,列2 asc    - 根据 “列1” 从大到小排列，如果相同则按列2从小到大排序</div><div class="line"> </div><div class="line">e、分组</div><div class="line">    select num from 表 group by num</div><div class="line">    select num,nid from 表 group by num,nid</div><div class="line">    select num,nid from 表  where nid &gt; 10 group by num,nid order nid desc</div><div class="line">    select num,nid,count(*),sum(score),max(score),min(score) from 表 group by num,nid</div><div class="line"> </div><div class="line">    select num from 表 group by num having max(id) &gt; 10</div><div class="line"> </div><div class="line">    特别的：group by 必须在where之后，order by之前</div><div class="line"> </div><div class="line">f、连表</div><div class="line">    无对应关系则不显示</div><div class="line">    select A.num, A.name, B.name</div><div class="line">    from A,B</div><div class="line">    Where A.nid = B.nid</div><div class="line"> </div><div class="line">    无对应关系则不显示</div><div class="line">    select A.num, A.name, B.name</div><div class="line">    from A inner join B</div><div class="line">    on A.nid = B.nid</div><div class="line"> </div><div class="line">    A表所有显示，如果B中无对应关系，则值为null</div><div class="line">    select A.num, A.name, B.name</div><div class="line">    from A left join B</div><div class="line">    on A.nid = B.nid</div><div class="line"> </div><div class="line">    B表所有显示，如果B中无对应关系，则值为null</div><div class="line">    select A.num, A.name, B.name</div><div class="line">    from A right join B</div><div class="line">    on A.nid = B.nid</div><div class="line"> </div><div class="line">g、组合</div><div class="line">    组合，自动处理重合</div><div class="line">    select nickname</div><div class="line">    from A</div><div class="line">    union</div><div class="line">    select name</div><div class="line">    from B</div><div class="line"> </div><div class="line">    组合，不处理重合</div><div class="line">    select nickname</div><div class="line">    from A</div><div class="line">    union all</div><div class="line">    select name</div><div class="line">    from B</div><div class="line"></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h3 id="Mysql的进阶"><a href="#Mysql的进阶" class="headerlink" title="Mysql的进阶"></a>Mysql的进阶</h3><h4 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h4><p>视图是一个虚拟表（非真实存在）,其本质是<strong>根据SQL语句获取动态的数据集</strong>，并为其命名，用户使用时只需使用名称即可获取结果集，并可以将其当作表来使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">SELECT</div><div class="line">    *</div><div class="line">FROM</div><div class="line">    (</div><div class="line">        SELECT</div><div class="line">            nid,</div><div class="line">            NAME</div><div class="line">        FROM</div><div class="line">            tb1</div><div class="line">        WHERE</div><div class="line">            nid &gt; 2</div><div class="line">    ) AS A</div><div class="line">WHERE</div><div class="line">    A. NAME &gt; &apos;alex&apos;;</div><div class="line"></div></pre></td></tr></table></figure></p>
+<ol>
+<li>创建视图 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">--格式：CREATE VIEW 视图名称 AS  SQL语句</div><div class="line">CREATE VIEW v1 AS </div><div class="line">SELET nid, </div><div class="line">    name</div><div class="line">FROM</div><div class="line">    A</div><div class="line">WHERE</div><div class="line">    nid &gt; 4</div><div class="line"></div></pre></td></tr></table></figure></li>
+<li>删除视图 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">--格式：DROP VIEW 视图名称</div><div class="line"></div><div class="line">DROP VIEW v1</div></pre></td></tr></table></figure></li>
+<li>修改视图 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">-- 格式：ALTER VIEW 视图名称 AS SQL语句</div><div class="line"></div><div class="line">ALTER VIEW v1 AS</div><div class="line">SELET A.nid,</div><div class="line">    B. NAME</div><div class="line">FROM</div><div class="line">    A</div><div class="line">LEFT JOIN B ON A.id = B.nid</div><div class="line">LEFT JOIN C ON A.id = C.nid</div><div class="line">WHERE</div><div class="line">    A.id &gt; 2</div><div class="line">AND C.nid &lt; 5</div><div class="line"></div></pre></td></tr></table></figure></li>
+<li>使用视图 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select * from v1</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h4><p>对某个表进行 增/删/改 操作的前后如果希望触发某个特定的行为时,可以使用触发器,触发器用于定制用户对表的行进行 增/删/改 前后的行为.</p>
+<ol>
+<li><p>创建触发器</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># 插入前</div><div class="line">CREATE TRIGGER tri_before_insert_tb1 BEFORE INSERT ON tb1 FOR EACH ROW</div><div class="line">BEGIN</div><div class="line">    ...</div><div class="line">END</div><div class="line"></div><div class="line"># 插入后</div><div class="line">CREATE TRIGGER tri_after_insert_tb1 AFTER INSERT ON tb1 FOR EACH ROW</div><div class="line">BEGIN</div><div class="line">    ...</div><div class="line">END</div><div class="line"></div><div class="line"># 删除前</div><div class="line">CREATE TRIGGER tri_before_delete_tb1 BEFORE DELETE ON tb1 FOR EACH ROW</div><div class="line">BEGIN</div><div class="line">    ...</div><div class="line">END</div><div class="line"></div><div class="line"># 删除后</div><div class="line">CREATE TRIGGER tri_after_delete_tb1 AFTER DELETE ON tb1 FOR EACH ROW</div><div class="line">BEGIN</div><div class="line">    ...</div><div class="line">END</div><div class="line"></div><div class="line"># 更新前</div><div class="line">CREATE TRIGGER tri_before_update_tb1 BEFORE UPDATE ON tb1 FOR EACH ROW</div><div class="line">BEGIN</div><div class="line">    ...</div><div class="line">END</div><div class="line"></div><div class="line"># 更新后</div><div class="line">CREATE TRIGGER tri_after_update_tb1 AFTER UPDATE ON tb1 FOR EACH ROW</div><div class="line">BEGIN</div><div class="line">    ...</div><div class="line">END</div><div class="line"></div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>插入前触发器实例</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">delimiter //</div><div class="line">CREATE TRIGGER tri_before_insert_tb1 BEFORE INSERT ON tb1 FOR EACH ROW</div><div class="line">BEGIN</div><div class="line"></div><div class="line">IF NEW. NAME == &apos;alex&apos; THEN</div><div class="line">    INSERT INTO tb2 (NAME)</div><div class="line">VALUES</div><div class="line">    (&apos;aa&apos;)</div><div class="line">END</div><div class="line">END//</div><div class="line">delimiter ;</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>插入后触发器实例</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">delimiter //</div><div class="line">CREATE TRIGGER tri_after_insert_tb1 AFTER INSERT ON tb1 FOR EACH ROW</div><div class="line">BEGIN</div><div class="line">    IF NEW. num = 666 THEN</div><div class="line">        INSERT INTO tb2 (NAME)</div><div class="line">        VALUES</div><div class="line">            (&apos;666&apos;),</div><div class="line">            (&apos;666&apos;) ;</div><div class="line">    ELSEIF NEW. num = 555 THEN</div><div class="line">        INSERT INTO tb2 (NAME)</div><div class="line">        VALUES</div><div class="line">            (&apos;555&apos;),</div><div class="line">            (&apos;555&apos;) ;</div><div class="line">    END IF;</div><div class="line">END//</div><div class="line">delimiter ;</div><div class="line"></div></pre></td></tr></table></figure>
+<p> NEW表示即将插入的数据行,OLD表示即将删除的数据行.</p>
+</li>
+<li>删除触发器 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DROP TRIGGER tri_after_insert_tb1;</div></pre></td></tr></table></figure></li>
+<li>使用触发器<br> 触发器无法由用户直接调用,而知由于对表的增/删/改操作被动引发的。</li>
+</ol>
+<h4 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h4><p>存储过程是一个SQL语句集合,当主动去调用存储过程时,其中内部的SQL语句会按照逻辑执行.</p>
+<ol>
+<li><p>创建存储过程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">-- 创建存储过程</div><div class="line"></div><div class="line">delimiter //</div><div class="line">create procedure p1()</div><div class="line">BEGIN</div><div class="line">    select * from t1;</div><div class="line">END//</div><div class="line">delimiter ;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">-- 执行存储过程</div><div class="line"></div><div class="line">call p1()</div><div class="line"></div></pre></td></tr></table></figure>
+<p>对于存储过程，可以接收参数，其参数有三类: in仅用于传入参数用,out仅用于返回值用,inout既可以传入又可以当作返回值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">-- 创建存储过程</div><div class="line">delimiter \\</div><div class="line">create procedure p1(</div><div class="line">    in i1 int,</div><div class="line">    in i2 int,</div><div class="line">    inout i3 int,</div><div class="line">    out r1 int</div><div class="line">)</div><div class="line">BEGIN</div><div class="line">    DECLARE temp1 int;</div><div class="line">    DECLARE temp2 int default 0;</div><div class="line">    </div><div class="line">    set temp1 = 1;</div><div class="line"></div><div class="line">    set r1 = i1 + i2 + temp1 + temp2;</div><div class="line">    </div><div class="line">    set i3 = i3 + 100;</div><div class="line"></div><div class="line">end\\</div><div class="line">delimiter ;</div><div class="line"></div><div class="line">-- 执行存储过程</div><div class="line">set @t1 =4;</div><div class="line">set @t2 = 0;</div><div class="line">CALL p1 (1, 2 ,@t1, @t2);</div><div class="line">SELECT @t1,@t2;</div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>结果集</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">delimiter //</div><div class="line">create procedure p1()</div><div class="line">begin</div><div class="line">    select * from v1;</div><div class="line">end //</div><div class="line">delimiter ;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>结果集和out值</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">delimiter //</div><div class="line">create procedure p2(</div><div class="line">    in n1 int,</div><div class="line">    inout n3 int,</div><div class="line">    out n2 int,</div><div class="line">)</div><div class="line">begin</div><div class="line">    declare temp1 int ;</div><div class="line">    declare temp2 int default 0;</div><div class="line"></div><div class="line">    select * from v1;</div><div class="line">    set n2 = n1 + 100;</div><div class="line">    set n3 = n3 + n1 + 100;</div><div class="line">end //</div><div class="line">delimiter ;</div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>事务</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">delimiter \\</div><div class="line">    create PROCEDURE p1(</div><div class="line">        OUT p_return_code tinyint</div><div class="line">    )</div><div class="line">    BEGIN </div><div class="line">      DECLARE exit handler for sqlexception </div><div class="line">      BEGIN </div><div class="line">        -- ERROR </div><div class="line">        set p_return_code = 1; </div><div class="line">        rollback; </div><div class="line">      END; </div><div class="line">     </div><div class="line">      DECLARE exit handler for sqlwarning </div><div class="line">      BEGIN </div><div class="line">        -- WARNING </div><div class="line">        set p_return_code = 2; </div><div class="line">        rollback; </div><div class="line">      END; </div><div class="line">     </div><div class="line">      START TRANSACTION; </div><div class="line">        DELETE from tb1;</div><div class="line">        insert into tb2(name)values(&apos;seven&apos;);</div><div class="line">      COMMIT; </div><div class="line">     </div><div class="line">      -- SUCCESS </div><div class="line">      set p_return_code = 0; </div><div class="line">     </div><div class="line">      END\\</div><div class="line">delimiter ;</div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>游标</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">delimiter //</div><div class="line">create procedure p3()</div><div class="line">begin </div><div class="line">    declare ssid int; -- 自定义变量1  </div><div class="line">    declare ssname varchar(50); -- 自定义变量2  </div><div class="line">    DECLARE done INT DEFAULT FALSE;</div><div class="line"></div><div class="line"></div><div class="line">    DECLARE my_cursor CURSOR FOR select sid,sname from student;</div><div class="line">    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;</div><div class="line">    </div><div class="line">    open my_cursor;</div><div class="line">        xxoo: LOOP</div><div class="line">            fetch my_cursor into ssid,ssname;</div><div class="line">            if done then </div><div class="line">                leave xxoo;</div><div class="line">            END IF;</div><div class="line">            insert into teacher(tname) values(ssname);</div><div class="line">        end loop xxoo;</div><div class="line">    close my_cursor;</div><div class="line">end  //</div><div class="line">delimter ;</div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>动态执行sql</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">delimiter \\</div><div class="line">CREATE PROCEDURE p4 (</div><div class="line">    in nid int</div><div class="line">)</div><div class="line">BEGIN</div><div class="line">    PREPARE prod FROM &apos;select * from student where sid &gt; ?&apos;;</div><div class="line">    EXECUTE prod USING @nid;</div><div class="line">    DEALLOCATE prepare prod; </div><div class="line">END\\</div><div class="line">delimiter ;</div><div class="line"></div></pre></td></tr></table></figure>
+</li>
+<li><p>删除存储过程</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">drop procedure proc_name;</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行存储过程</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">-- 无参数</div><div class="line">call proc_name()</div><div class="line"></div><div class="line">-- 有参数，全in</div><div class="line">call proc_name(1,2)</div><div class="line"></div><div class="line">-- 有参数，有in，out，inout</div><div class="line">set @t1=0;</div><div class="line">set @t2=3;</div><div class="line">call proc_name(1,2,@t1,@t2)</div><div class="line"></div></pre></td></tr></table></figure>
+</li>
+<li><p>pymysql操作存储过程</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"># -*- coding:utf-8 -*-</div><div class="line">import pymysql</div><div class="line"></div><div class="line">conn = pymysql.connect(host=&apos;127.0.0.1&apos;, port=3306, user=&apos;root&apos;, passwd=&apos;123&apos;, db=&apos;t1&apos;)</div><div class="line">cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)</div><div class="line"># 执行存储过程</div><div class="line">cursor.callproc(&apos;p1&apos;, args=(1, 22, 3, 4))</div><div class="line"># 获取执行完存储的参数</div><div class="line">cursor.execute(&quot;select @_p1_0,@_p1_1,@_p1_2,@_p1_3&quot;)</div><div class="line">result = cursor.fetchall()</div><div class="line"></div><div class="line">conn.commit()</div><div class="line">cursor.close()</div><div class="line">conn.close()</div><div class="line"></div><div class="line"></div><div class="line">print(result)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>mysql内置了很多函数,类似Python的内置函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">CHAR_LENGTH(str)</div><div class="line">    返回值为字符串str 的长度，长度的单位为字符。一个多字节字符算作一个单字符。</div><div class="line">    对于一个包含五个二字节字符集, LENGTH()返回值为 10, 而CHAR_LENGTH()的返回值为5。</div><div class="line"></div><div class="line">CONCAT(str1,str2,...)</div><div class="line">    字符串拼接</div><div class="line">    如有任何一个参数为NULL ，则返回值为 NULL。</div><div class="line">CONCAT_WS(separator,str1,str2,...)</div><div class="line">    字符串拼接（自定义连接符）</div><div class="line">    CONCAT_WS()不会忽略任何空字符串。 (然而会忽略所有的 NULL）。</div><div class="line"></div><div class="line">CONV(N,from_base,to_base)</div><div class="line">    进制转换</div><div class="line">    例如：</div><div class="line">        SELECT CONV(&apos;a&apos;,16,2); 表示将 a 由16进制转换为2进制字符串表示</div><div class="line"></div><div class="line">FORMAT(X,D)</div><div class="line">    将数字X 的格式写为&apos;#,###,###.##&apos;,以四舍五入的方式保留小数点后 D 位， 并将结果以字符串的形式返回。若  D 为 0, 则返回结果不带有小数点，或不含小数部分。</div><div class="line">    例如：</div><div class="line">        SELECT FORMAT(12332.1,4); 结果为： &apos;12,332.1000&apos;</div><div class="line">INSERT(str,pos,len,newstr)</div><div class="line">    在str的指定位置插入字符串</div><div class="line">        pos：要替换位置其实位置</div><div class="line">        len：替换的长度</div><div class="line">        newstr：新字符串</div><div class="line">    特别的：</div><div class="line">        如果pos超过原字符串长度，则返回原字符串</div><div class="line">        如果len超过原字符串长度，则由新字符串完全替换</div><div class="line">INSTR(str,substr)</div><div class="line">    返回字符串 str 中子字符串的第一个出现位置。</div><div class="line"></div><div class="line">LEFT(str,len)</div><div class="line">    返回字符串str 从开始的len位置的子序列字符。</div><div class="line"></div><div class="line">LOWER(str)</div><div class="line">    变小写</div><div class="line"></div><div class="line">UPPER(str)</div><div class="line">    变大写</div><div class="line"></div><div class="line">LTRIM(str)</div><div class="line">    返回字符串 str ，其引导空格字符被删除。</div><div class="line">RTRIM(str)</div><div class="line">    返回字符串 str ，结尾空格字符被删去。</div><div class="line">SUBSTRING(str,pos,len)</div><div class="line">    获取字符串子序列</div><div class="line"></div><div class="line">LOCATE(substr,str,pos)</div><div class="line">    获取子序列索引位置</div><div class="line"></div><div class="line">REPEAT(str,count)</div><div class="line">    返回一个由重复的字符串str 组成的字符串，字符串str的数目等于count 。</div><div class="line">    若 count &lt;= 0,则返回一个空字符串。</div><div class="line">    若str 或 count 为 NULL，则返回 NULL 。</div><div class="line">REPLACE(str,from_str,to_str)</div><div class="line">    返回字符串str 以及所有被字符串to_str替代的字符串from_str 。</div><div class="line">REVERSE(str)</div><div class="line">    返回字符串 str ，顺序和字符顺序相反。</div><div class="line">RIGHT(str,len)</div><div class="line">    从字符串str 开始，返回从后边开始len个字符组成的子序列</div><div class="line"></div><div class="line">SPACE(N)</div><div class="line">    返回一个由N空格组成的字符串。</div><div class="line"></div><div class="line">SUBSTRING(str,pos) , SUBSTRING(str FROM pos) SUBSTRING(str,pos,len) , SUBSTRING(str FROM pos FOR len)</div><div class="line">    不带有len 参数的格式从字符串str返回一个子字符串，起始于位置 pos。带有len参数的格式从字符串str返回一个长度同len字符相同的子字符串，起始于位置 pos。 使用 FROM的格式为标准 SQL 语法。也可能对pos使用一个负值。假若这样，则子字符串的位置起始于字符串结尾的pos 字符，而不是字符串的开头位置。在以下格式的函数中可以对pos 使用一个负值。</div><div class="line"></div><div class="line">    mysql&gt; SELECT SUBSTRING(&apos;Quadratically&apos;,5);</div><div class="line">        -&gt; &apos;ratically&apos;</div><div class="line"></div><div class="line">    mysql&gt; SELECT SUBSTRING(&apos;foobarbar&apos; FROM 4);</div><div class="line">        -&gt; &apos;barbar&apos;</div><div class="line"></div><div class="line">    mysql&gt; SELECT SUBSTRING(&apos;Quadratically&apos;,5,6);</div><div class="line">        -&gt; &apos;ratica&apos;</div><div class="line"></div><div class="line">    mysql&gt; SELECT SUBSTRING(&apos;Sakila&apos;, -3);</div><div class="line">        -&gt; &apos;ila&apos;</div><div class="line"></div><div class="line">    mysql&gt; SELECT SUBSTRING(&apos;Sakila&apos;, -5, 3);</div><div class="line">        -&gt; &apos;aki&apos;</div><div class="line"></div><div class="line">    mysql&gt; SELECT SUBSTRING(&apos;Sakila&apos; FROM -4 FOR 2);</div><div class="line">        -&gt; &apos;ki&apos;</div><div class="line"></div><div class="line">TRIM([&#123;BOTH | LEADING | TRAILING&#125; [remstr] FROM] str) TRIM(remstr FROM] str)</div><div class="line">    返回字符串 str ， 其中所有remstr 前缀和/或后缀都已被删除。若分类符BOTH、LEADIN或TRAILING中没有一个是给定的,则假设为BOTH 。 remstr 为可选项，在未指定情况下，可删除空格。</div><div class="line"></div><div class="line">    mysql&gt; SELECT TRIM(&apos;  bar   &apos;);</div><div class="line">            -&gt; &apos;bar&apos;</div><div class="line"></div><div class="line">    mysql&gt; SELECT TRIM(LEADING &apos;x&apos; FROM &apos;xxxbarxxx&apos;);</div><div class="line">            -&gt; &apos;barxxx&apos;</div><div class="line"></div><div class="line">    mysql&gt; SELECT TRIM(BOTH &apos;x&apos; FROM &apos;xxxbarxxx&apos;);</div><div class="line">            -&gt; &apos;bar&apos;</div><div class="line"></div><div class="line">    mysql&gt; SELECT TRIM(TRAILING &apos;xyz&apos; FROM &apos;barxxyz&apos;);</div><div class="line">            -&gt; &apos;barx&apos;</div><div class="line"></div></pre></td></tr></table></figure></p>
+<ol>
+<li><p>自定义函数</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">delimiter \\</div><div class="line">create function f1(</div><div class="line">    i1 int,</div><div class="line">    i2 int)</div><div class="line">returns int</div><div class="line">BEGIN</div><div class="line">    declare num int;</div><div class="line">    set num = i1 + i2;</div><div class="line">    return(num);</div><div class="line">END \\</div><div class="line">delimiter ;</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除函数</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">drop function func_name;</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行函数</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 获取返回值</div><div class="line">declare @i VARCHAR(32);</div><div class="line">select UPPER(&apos;alex&apos;) into @i;</div><div class="line">SELECT @i;</div><div class="line"></div><div class="line"></div><div class="line"># 在查询中使用</div><div class="line">select f1(11,nid) ,name from tb2;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h4><p>事务用于将某些操作的多个SQL作为原子性操作,一旦有某一个出现错误,即可回滚到原来的状态,从而保证数据库数据完整性.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">delimiter \\</div><div class="line">create PROCEDURE p1(</div><div class="line">    OUT p_return_code tinyint</div><div class="line">)</div><div class="line">BEGIN </div><div class="line">  DECLARE exit handler for sqlexception </div><div class="line">  BEGIN </div><div class="line">    -- ERROR </div><div class="line">    set p_return_code = 1; </div><div class="line">    rollback; </div><div class="line">  END; </div><div class="line"> </div><div class="line">  DECLARE exit handler for sqlwarning </div><div class="line">  BEGIN </div><div class="line">    -- WARNING </div><div class="line">    set p_return_code = 2; </div><div class="line">    rollback; </div><div class="line">  END; </div><div class="line"> </div><div class="line">  START TRANSACTION; </div><div class="line">    DELETE from tb1;</div><div class="line">    insert into tb2(name)values(&apos;seven&apos;);</div><div class="line">  COMMIT; </div><div class="line"> </div><div class="line">  -- SUCCESS </div><div class="line">  set p_return_code = 0; </div><div class="line"> </div><div class="line">  END\\</div><div class="line">delimiter ;</div><div class="line"></div><div class="line"></div><div class="line">set @i =0;</div><div class="line">call p1(@i);</div><div class="line">select @i;</div><div class="line"></div></pre></td></tr></table></figure></p>
+<h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ol>
+<li>条件语句 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">delimiter \\</div><div class="line">CREATE PROCEDURE proc_if ()</div><div class="line">BEGIN</div><div class="line">    </div><div class="line">    declare i int default 0;</div><div class="line">    if i = 1 THEN</div><div class="line">        SELECT 1;</div><div class="line">    ELSEIF i = 2 THEN</div><div class="line">        SELECT 2;</div><div class="line">    ELSE</div><div class="line">        SELECT 7;</div><div class="line">    END IF;</div><div class="line"></div><div class="line">END\\</div><div class="line">delimiter ;</div><div class="line"></div></pre></td></tr></table></figure></li>
+<li><p>循环语句</p>
+ <figure class="highlight plain"><figcaption><span>while循环</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">delimiter \\</div><div class="line">CREATE PROCEDURE proc_while ()</div><div class="line">BEGIN</div><div class="line"></div><div class="line">    DECLARE num INT ;</div><div class="line">    SET num = 0 ;</div><div class="line">    WHILE num &lt; 10 DO</div><div class="line">        SELECT</div><div class="line">            num ;</div><div class="line">        SET num = num + 1 ;</div><div class="line">    END WHILE ;</div><div class="line"></div><div class="line">END\\</div><div class="line">delimiter ;</div><div class="line"></div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>repeat</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">delimiter \\</div><div class="line">CREATE PROCEDURE proc_repeat ()</div><div class="line">BEGIN</div><div class="line"></div><div class="line">    DECLARE i INT ;</div><div class="line">    SET i = 0 ;</div><div class="line">    repeat</div><div class="line">        select i;</div><div class="line">        set i = i + 1;</div><div class="line">        until i &gt;= 5</div><div class="line">    end repeat;</div><div class="line"></div><div class="line">END\\</div><div class="line">delimiter ;</div><div class="line"></div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">BEGIN</div><div class="line">    </div><div class="line">    declare i int default 0;</div><div class="line">    loop_label: loop</div><div class="line">        </div><div class="line">        set i=i+1;</div><div class="line">        if i&lt;8 then</div><div class="line">            iterate loop_label;</div><div class="line">        end if;</div><div class="line">        if i&gt;=10 then</div><div class="line">            leave loop_label;</div><div class="line">        end if;</div><div class="line">        select i;</div><div class="line">    end loop loop_label;</div><div class="line"></div><div class="line">END</div></pre></td></tr></table></figure></li>
+<li>动态执行sql语句 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">delimiter \\</div><div class="line">DROP PROCEDURE IF EXISTS proc_sql \\</div><div class="line">CREATE PROCEDURE proc_sql ()</div><div class="line">BEGIN</div><div class="line">    declare p1 int;</div><div class="line">    set p1 = 11;</div><div class="line">    set @p1 = p1;</div><div class="line"></div><div class="line">    PREPARE prod FROM &apos;select * from tb2 where nid &gt; ?&apos;;</div><div class="line">    EXECUTE prod USING @p1;</div><div class="line">    DEALLOCATE prepare prod; </div><div class="line"></div><div class="line">END\\</div><div class="line">delimiter ;</div><div class="line"></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="索引-1"><a href="#索引-1" class="headerlink" title="索引"></a>索引</h4><p>索引,是数据库中专门用于帮助用户快速查询数据的一种数据结构.类似于字典中的目录,查找字典内容时可以根据目录查找到数据的存放位置,然后直接获取即可.</p>
+<ol>
+<li><p>普通索引 只能帮助查找</p>
+ <figure class="highlight plain"><figcaption><span>创建表和索引</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">create table in1(</div><div class="line">    nid int not null auto_increment primary key,</div><div class="line">    name varchar(32) not null,</div><div class="line">    email varchar(64) not null,</div><div class="line">    extra text,</div><div class="line">    index ix_name (name)</div><div class="line">)</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>创建索引</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create index index_name on table_name(column_name)</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>删除索引</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">drop index_name on table_name;</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>查看索引</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show index from table_name;</div></pre></td></tr></table></figure>
+<p> 注意:对于创建索引时如果是blob和text类型,必须指定length.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create index ix_extra on in1(extra(32));</div></pre></td></tr></table></figure>
+</li>
+<li><p>唯一索引 只能帮助查找,内容不允许重复(允许null)</p>
+ <figure class="highlight plain"><figcaption><span>创建表和唯一索引</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">create table in1(</div><div class="line">    nid int not null auto_increment primary key,</div><div class="line">    name varchar(32) not null,</div><div class="line">    email varchar(64) not null,</div><div class="line">    extra text,</div><div class="line">    unique ix_name (name)</div><div class="line">)</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>创建唯一索引</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create unique index 索引名 on 表名(列名)</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>删除唯一索引</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">drop unique index 索引名 on 表名</div></pre></td></tr></table></figure>
+</li>
+<li><p>主键索引 只能帮助查找,内容不允许重复,不允许null,一个表只能有一个主键</p>
+ <figure class="highlight plain"><figcaption><span>创建表和主键</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">create table in1(</div><div class="line">    nid int not null auto_increment primary key,</div><div class="line">    name varchar(32) not null,</div><div class="line">    email varchar(64) not null,</div><div class="line">    extra text,</div><div class="line">    index ix_name (name)</div><div class="line">)</div><div class="line"></div><div class="line">OR</div><div class="line"></div><div class="line">create table in1(</div><div class="line">    nid int not null auto_increment,</div><div class="line">    name varchar(32) not null,</div><div class="line">    email varchar(64) not null,</div><div class="line">    extra text,</div><div class="line">    primary key(ni1),</div><div class="line">    index ix_name (name)</div><div class="line">)</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>创建主键</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table 表名 add primary key(列名);</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>删除主键</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">alter table 表名 drop primary key;</div><div class="line">alter table 表名  modify  列名 int, drop primary key;</div></pre></td></tr></table></figure>
+</li>
+<li><p>组合索引 多列共同组成一个索引<br> 最左前缀 在单独查找除去左的一列的别的列是不会使用索引的.</p>
+ <figure class="highlight plain"><figcaption><span>创建组合索引</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create index ix_name_email on in3(name,email);</div></pre></td></tr></table></figure></li>
+<li><p>全文索引 对所有字段内容的索引,通过分词实现.</p>
+</li>
+<li><p>正确使用索引</p>
+ <figure class="highlight plain"><figcaption><span>相关命令</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">- 查看表结构</div><div class="line">        desc 表名</div><div class="line">     </div><div class="line">    - 查看生成表的SQL</div><div class="line">        show create table 表名</div><div class="line">     </div><div class="line">    - 查看索引</div><div class="line">        show index from  表名</div><div class="line">     </div><div class="line">    - 查看执行时间</div><div class="line">        set profiling = 1;</div><div class="line">        SQL...</div><div class="line">        show profiles;</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>正确使用索引</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">    - like &apos;%xx&apos;</div><div class="line">    select * from tb1 where name like &apos;%cn&apos;;</div><div class="line">- 使用函数</div><div class="line">    select * from tb1 where reverse(name) = &apos;wupeiqi&apos;;</div><div class="line">- or</div><div class="line">    select * from tb1 where nid = 1 or email = &apos;seven@live.com&apos;;</div><div class="line">    特别的：当or条件中有未建立索引的列才失效，以下会走索引</div><div class="line">            select * from tb1 where nid = 1 or name = &apos;seven&apos;;</div><div class="line">            select * from tb1 where nid = 1 or email = &apos;seven@live.com&apos; and name = &apos;alex&apos;</div><div class="line">- 类型不一致</div><div class="line">    如果列是字符串类型，传入条件是必须用引号引起来，不然...</div><div class="line">    select * from tb1 where name = 999;</div><div class="line">- !=</div><div class="line">    select * from tb1 where name != &apos;alex&apos;</div><div class="line">    特别的：如果是主键，则还是会走索引</div><div class="line">        select * from tb1 where nid != 123</div><div class="line">- &gt;</div><div class="line">    select * from tb1 where name &gt; &apos;alex&apos;</div><div class="line">    特别的：如果是主键或索引是整数类型，则还是会走索引</div><div class="line">        select * from tb1 where nid &gt; 123</div><div class="line">        select * from tb1 where num &gt; 123</div><div class="line">- order by</div><div class="line">    select email from tb1 order by name desc;</div><div class="line">    当根据索引排序时候，选择的映射如果不是索引，则不走索引</div><div class="line">    特别的：如果对主键排序，则还是走索引：</div><div class="line">        select * from tb1 order by nid desc;</div><div class="line"> </div><div class="line">- 组合索引最左前缀</div><div class="line">    如果组合索引为：(name,email)</div><div class="line">    name and email       -- 使用索引</div><div class="line">    name                 -- 使用索引</div><div class="line">    email                -- 不使用索引</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>注意事项</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">- 避免使用select *</div><div class="line">- count(1)或count(列) 代替 count(*)</div><div class="line">- 创建表时尽量时 char 代替 varchar</div><div class="line">- 表的字段顺序固定长度的字段优先</div><div class="line">- 组合索引代替多个单列索引（经常使用多个条件查询时）</div><div class="line">- 尽量使用短索引</div><div class="line">- 使用连接（JOIN）来代替子查询(Sub-Queries)</div><div class="line">- 连表时注意条件类型需一致</div><div class="line">- 索引散列值（重复少）不适合建索引，例：性别不适合</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="数据库分页"><a href="#数据库分页" class="headerlink" title="数据库分页"></a>数据库分页</h4><p>无论是否有索引，limit分页是一个值得关注的问题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">每页显示10条：</div><div class="line">当前 118 120， 125</div><div class="line"></div><div class="line">倒序：</div><div class="line">            大      小</div><div class="line">            980    970  7 6  6 5  54  43  32</div><div class="line"></div><div class="line">21 19 98     </div><div class="line">下一页：</div><div class="line"></div><div class="line">    select </div><div class="line">        * </div><div class="line">    from </div><div class="line">        tb1 </div><div class="line">    where </div><div class="line">        nid &lt; (select nid from (select nid from tb1 where nid &lt; 当前页最小值 order by nid desc limit 每页数据 *【页码-当前页】) A order by A.nid asc limit 1)  </div><div class="line">    order by </div><div class="line">        nid desc </div><div class="line">    limit 10;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    select </div><div class="line">        * </div><div class="line">    from </div><div class="line">        tb1 </div><div class="line">    where </div><div class="line">        nid &lt; (select nid from (select nid from tb1 where nid &lt; 970  order by nid desc limit 40) A order by A.nid asc limit 1)  </div><div class="line">    order by </div><div class="line">        nid desc </div><div class="line">    limit 10;</div><div class="line"></div><div class="line"></div><div class="line">上一页：</div><div class="line"></div><div class="line">    select </div><div class="line">        * </div><div class="line">    from </div><div class="line">        tb1 </div><div class="line">    where </div><div class="line">        nid &lt; (select nid from (select nid from tb1 where nid &gt; 当前页最大值 order by nid asc limit 每页数据 *【当前页-页码】) A order by A.nid asc limit 1)  </div><div class="line">    order by </div><div class="line">        nid desc </div><div class="line">    limit 10;</div><div class="line"></div><div class="line"></div><div class="line">    select </div><div class="line">        * </div><div class="line">    from </div><div class="line">        tb1 </div><div class="line">    where </div><div class="line">        nid &lt; (select nid from (select nid from tb1 where nid &gt; 980 order by nid asc limit 20) A order by A.nid desc limit 1)  </div><div class="line">    order by </div><div class="line">        nid desc </div><div class="line">    limit 10;</div><div class="line"></div></pre></td></tr></table></figure></p>
+<h4 id="计划执行"><a href="#计划执行" class="headerlink" title="计划执行"></a>计划执行</h4><p>explain + 查询SQL - 用于显示SQL执行信息参数，根据参考信息可以进行SQL优化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">mysql&gt; explain select * from tb2;</div><div class="line">+----+-------------+-------+------+---------------+------+---------+------+------+-------+</div><div class="line">| id | select_type | table | type | possible_keys | key  | key_len | ref  | rows | Extra |</div><div class="line">+----+-------------+-------+------+---------------+------+---------+------+------+-------+</div><div class="line">|  1 | SIMPLE      | tb2   | ALL  | NULL          | NULL | NULL    | NULL |    2 | NULL  |</div><div class="line">+----+-------------+-------+------+---------------+------+---------+------+------+-------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line"></div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><figcaption><span>详细</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">id</div><div class="line">    查询顺序标识</div><div class="line">        如：mysql&gt; explain select * from (select nid,name from tb1 where nid &lt; 10) as B;</div><div class="line">        +----+-------------+------------+-------+---------------+---------+---------+------+------+-------------+</div><div class="line">        | id | select_type | table      | type  | possible_keys | key     | key_len | ref  | rows | Extra       |</div><div class="line">        +----+-------------+------------+-------+---------------+---------+---------+------+------+-------------+</div><div class="line">        |  1 | PRIMARY     | &lt;derived2&gt; | ALL   | NULL          | NULL    | NULL    | NULL |    9 | NULL        |</div><div class="line">        |  2 | DERIVED     | tb1        | range | PRIMARY       | PRIMARY | 8       | NULL |    9 | Using where |</div><div class="line">        +----+-------------+------------+-------+---------------+---------+---------+------+------+-------------+</div><div class="line">    特别的：如果使用union连接气值可能为null</div><div class="line"></div><div class="line"></div><div class="line">select_type</div><div class="line">    查询类型</div><div class="line">        SIMPLE          简单查询</div><div class="line">        PRIMARY         最外层查询</div><div class="line">        SUBQUERY        映射为子查询</div><div class="line">        DERIVED         子查询</div><div class="line">        UNION           联合</div><div class="line">        UNION RESULT    使用联合的结果</div><div class="line">        ...</div><div class="line">table</div><div class="line">    正在访问的表名</div><div class="line"></div><div class="line"></div><div class="line">type</div><div class="line">    查询时的访问方式，性能：all &lt; index &lt; range &lt; index_merge &lt; ref_or_null &lt; ref &lt; eq_ref &lt; system/const</div><div class="line">        ALL             全表扫描，对于数据表从头到尾找一遍</div><div class="line">                        select * from tb1;</div><div class="line">                        特别的：如果有limit限制，则找到之后就不在继续向下扫描</div><div class="line">                               select * from tb1 where email = &apos;seven@live.com&apos;</div><div class="line">                               select * from tb1 where email = &apos;seven@live.com&apos; limit 1;</div><div class="line">                               虽然上述两个语句都会进行全表扫描，第二句使用了limit，则找到一个后就不再继续扫描。</div><div class="line"></div><div class="line">        INDEX           全索引扫描，对索引从头到尾找一遍</div><div class="line">                        select nid from tb1;</div><div class="line"></div><div class="line">        RANGE          对索引列进行范围查找</div><div class="line">                        select *  from tb1 where name &lt; &apos;alex&apos;;</div><div class="line">                        PS:</div><div class="line">                            between and</div><div class="line">                            in</div><div class="line">                            &gt;   &gt;=  &lt;   &lt;=  操作</div><div class="line">                            注意：!= 和 &gt; 符号</div><div class="line"></div><div class="line"></div><div class="line">        INDEX_MERGE     合并索引，使用多个单列索引搜索</div><div class="line">                        select *  from tb1 where name = &apos;alex&apos; or nid in (11,22,33);</div><div class="line"></div><div class="line">        REF             根据索引查找一个或多个值</div><div class="line">                        select *  from tb1 where name = &apos;seven&apos;;</div><div class="line"></div><div class="line">        EQ_REF          连接时使用primary key 或 unique类型</div><div class="line">                        select tb2.nid,tb1.name from tb2 left join tb1 on tb2.nid = tb1.nid;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">        CONST           常量</div><div class="line">                        表最多有一个匹配行,因为仅有一行,在这行的列值可被优化器剩余部分认为是常数,const表很快,因为它们只读取一次。</div><div class="line">                        select nid from tb1 where nid = 2 ;</div><div class="line"></div><div class="line">        SYSTEM          系统</div><div class="line">                        表仅有一行(=系统表)。这是const联接类型的一个特例。</div><div class="line">                        select * from (select nid from tb1 where nid = 1) as A;</div><div class="line">possible_keys</div><div class="line">    可能使用的索引</div><div class="line"></div><div class="line">key</div><div class="line">    真实使用的</div><div class="line"></div><div class="line">key_len</div><div class="line">    MySQL中使用索引字节长度</div><div class="line"></div><div class="line">rows</div><div class="line">    mysql估计为了找到所需的行而要读取的行数 ------ 只是预估值</div><div class="line"></div><div class="line">extra</div><div class="line">    该列包含MySQL解决查询的详细信息</div><div class="line">    “Using index”</div><div class="line">        此值表示mysql将使用覆盖索引，以避免访问表。不要把覆盖索引和index访问类型弄混了。</div><div class="line">    “Using where”</div><div class="line">        这意味着mysql服务器将在存储引擎检索行后再进行过滤，许多where条件里涉及索引中的列，当（并且如果）它读取索引时，就能被存储引擎检验，因此不是所有带where子句的查询都会显示“Using where”。有时“Using where”的出现就是一个暗示：查询可受益于不同的索引。</div><div class="line">    “Using temporary”</div><div class="line">        这意味着mysql在对查询结果排序时会使用一个临时表。</div><div class="line">    “Using filesort”</div><div class="line">        这意味着mysql会对结果使用一个外部索引排序，而不是按索引次序从表里读取行。mysql有两种文件排序算法，这两种排序方式都可以在内存或者磁盘上完成，explain不会告诉你mysql将使用哪一种文件排序，也不会告诉你排序会在内存里还是磁盘上完成。</div><div class="line">    “Range checked for each record(index map: N)”</div><div class="line">        这个意味着没有好用的索引，新的索引将在联接的每一行上重新估算，N是显示在possible_keys列中索引的位图，并且是冗余的。</div><div class="line"></div></pre></td></tr></table></figure>
+<h4 id="慢日志查询"><a href="#慢日志查询" class="headerlink" title="慢日志查询"></a>慢日志查询</h4><p>配置MySQL自动记录慢日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">slow_query_log = OFF                            是否开启慢日志记录</div><div class="line">long_query_time = 2                              时间限制，超过此时间，则记录</div><div class="line">slow_query_log_file = /usr/slow.log        日志文件</div><div class="line">log_queries_not_using_indexes = OFF     为使用索引的搜索是否记录</div><div class="line"></div><div class="line">注：查看当前配置信息：</div><div class="line">　　     show variables like &apos;%query%&apos;</div><div class="line">     修改当前配置：</div><div class="line">　　　　set global 变量名 = 值</div></pre></td></tr></table></figure>
+<p>查看MySQL慢日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">mysqldumpslow -s at -a  /usr/local/var/mysql/MacBook-Pro-3-slow.log</div><div class="line">&quot;&quot;&quot;</div><div class="line">--verbose    版本</div><div class="line">--debug      调试</div><div class="line">--help       帮助</div><div class="line"> </div><div class="line">-v           版本</div><div class="line">-d           调试模式</div><div class="line">-s ORDER     排序方式</div><div class="line">             what to sort by (al, at, ar, c, l, r, t), &apos;at&apos; is default</div><div class="line">              al: average lock time</div><div class="line">              ar: average rows sent</div><div class="line">              at: average query time</div><div class="line">               c: count</div><div class="line">               l: lock time</div><div class="line">               r: rows sent</div><div class="line">               t: query time</div><div class="line">-r           反转顺序，默认文件倒序拍。reverse the sort order (largest last instead of first)</div><div class="line">-t NUM       显示前N条just show the top n queries</div><div class="line">-a           不要将SQL中数字转换成N，字符串转换成S。don&apos;t abstract all numbers to N and strings to &apos;S&apos;</div><div class="line">-n NUM       abstract numbers with at least n digits within names</div><div class="line">-g PATTERN   正则匹配；grep: only consider stmts that include this string</div><div class="line">-h HOSTNAME  mysql机器名或者IP；hostname of db server for *-slow.log filename (can be wildcard),</div><div class="line">             default is &apos;*&apos;, i.e. match all</div><div class="line">-i NAME      name of server instance (if using mysql.server startup script)</div><div class="line">-l           总时间中不减去锁定时间；don&apos;t subtract lock time from total time</div><div class="line">&quot;&quot;&quot;</div><div class="line"></div></pre></td></tr></table></figure>
+<hr>
+<h3 id="Python操作Mysql"><a href="#Python操作Mysql" class="headerlink" title="Python操作Mysql"></a>Python操作Mysql</h3><h4 id="用pymysql模块操作"><a href="#用pymysql模块操作" class="headerlink" title="用pymysql模块操作"></a>用pymysql模块操作</h4><p>pymsql是Python中操作MySQL的模块，其使用方法和MySQLdb几乎相同.</p>
+<ol>
+<li><p>安装</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip3 install pymysql</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行sql</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"># -*- coding:utf-8 -*-</div><div class="line">import pymysql</div><div class="line">  </div><div class="line"># 创建连接</div><div class="line">conn = pymysql.connect(host=&apos;127.0.0.1&apos;, port=3306, user=&apos;root&apos;, passwd=&apos;123&apos;, db=&apos;t1&apos;)</div><div class="line"># 创建游标</div><div class="line">cursor = conn.cursor()</div><div class="line">  </div><div class="line"># 执行SQL，并返回收影响行数</div><div class="line">effect_row = cursor.execute(&quot;update hosts set host = &apos;1.1.1.2&apos;&quot;)</div><div class="line">  </div><div class="line"># 执行SQL，并返回受影响行数</div><div class="line">#effect_row = cursor.execute(&quot;update hosts set host = &apos;1.1.1.2&apos; where nid &gt; %s&quot;, (1,))</div><div class="line">  </div><div class="line"># 执行SQL，并返回受影响行数</div><div class="line">#effect_row = cursor.executemany(&quot;insert into hosts(host,color_id)values(%s,%s)&quot;, [(&quot;1.1.1.11&quot;,1),(&quot;1.1.1.11&quot;,2)])</div><div class="line">  </div><div class="line">  </div><div class="line"># 提交，不然无法保存新建或者修改的数据</div><div class="line">conn.commit()</div><div class="line">  </div><div class="line"># 关闭游标</div><div class="line">cursor.close()</div><div class="line"># 关闭连接</div><div class="line">conn.close()</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取新插入数据的自增ID</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"># -*- coding:utf-8 -*-</div><div class="line">import pymysql</div><div class="line">  </div><div class="line">conn = pymysql.connect(host=&apos;127.0.0.1&apos;, port=3306, user=&apos;root&apos;, passwd=&apos;123&apos;, db=&apos;t1&apos;)</div><div class="line">cursor = conn.cursor()</div><div class="line">cursor.executemany(&quot;insert into hosts(host,color_id)values(%s,%s)&quot;, [(&quot;1.1.1.11&quot;,1),(&quot;1.1.1.11&quot;,2)])</div><div class="line">conn.commit()</div><div class="line">cursor.close()</div><div class="line">conn.close()</div><div class="line">  </div><div class="line"># 获取最新自增ID</div><div class="line">new_id = cursor.lastrowid</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取查询数据</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"># -*- coding:utf-8 -*-</div><div class="line">import pymysql</div><div class="line">  </div><div class="line">conn = pymysql.connect(host=&apos;127.0.0.1&apos;, port=3306, user=&apos;root&apos;, passwd=&apos;123&apos;, db=&apos;t1&apos;)</div><div class="line">cursor = conn.cursor()</div><div class="line">cursor.execute(&quot;select * from hosts&quot;)</div><div class="line">  </div><div class="line"># 获取第一行数据</div><div class="line">row_1 = cursor.fetchone()</div><div class="line">  </div><div class="line"># 获取前n行数据</div><div class="line"># row_2 = cursor.fetchmany(3)</div><div class="line"># 获取所有数据</div><div class="line"># row_3 = cursor.fetchall()</div><div class="line">cursor.scroll(1,mode=&apos;relative&apos;)  # 相对当前位置移动</div><div class="line">cursor.scroll(2,mode=&apos;absolute&apos;) # 相对绝对位置移动</div><div class="line">conn.commit()</div><div class="line">cursor.close()</div><div class="line">conn.close()</div></pre></td></tr></table></figure>
+</li>
+<li><p>fetch数据类型<br> 默认获取的数据类型是元组,如果想获取字典(也就是包含了列名)</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"># -*- coding:utf-8 -*-</div><div class="line">import pymysql</div><div class="line">  </div><div class="line">conn = pymysql.connect(host=&apos;127.0.0.1&apos;, port=3306, user=&apos;root&apos;, passwd=&apos;123&apos;, db=&apos;t1&apos;)</div><div class="line">  </div><div class="line"># 游标设置为字典类型</div><div class="line">cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)</div><div class="line">r = cursor.execute(&quot;call p1()&quot;)</div><div class="line">  </div><div class="line">result = cursor.fetchone()</div><div class="line">  </div><div class="line">conn.commit()</div><div class="line">cursor.close()</div><div class="line">conn.close()</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="SQLAchemy操作数据库"><a href="#SQLAchemy操作数据库" class="headerlink" title="SQLAchemy操作数据库"></a>SQLAchemy操作数据库</h4><p>SQLAlchemy是Python编程语言下的一款ORM框架,该框架建立在数据库API之上,使用关系对象映射进行数据库操作,简言之便是:将对象转换成SQL,然后使用数据API执行SQL并获取执行结果.</p>
+<p>安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip3 install SQLAlchemy</div></pre></td></tr></table></figure></p>
+<p>SQLAlchemy本身无法操作数据库,其必须以来pymsql等第三方插件,Dialect用于和数据API进行交流,根据配置文件的不同调用不同的数据库API,从而实现对数据库的操作,如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">MySQL-Python</div><div class="line">    mysql+mysqldb://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;[:&lt;port&gt;]/&lt;dbname&gt;</div><div class="line">   </div><div class="line">pymysql</div><div class="line">    mysql+pymysql://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;/&lt;dbname&gt;[?&lt;options&gt;]</div><div class="line">   </div><div class="line">MySQL-Connector</div><div class="line">    mysql+mysqlconnector://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;[:&lt;port&gt;]/&lt;dbname&gt;</div><div class="line">   </div><div class="line">cx_Oracle</div><div class="line">    oracle+cx_oracle://user:pass@host:port/dbname[?key=value&amp;key=value...]</div><div class="line">   </div><div class="line">更多详见:http://docs.sqlalchemy.org/en/latest/dialects/index.html</div></pre></td></tr></table></figure>
+<ol>
+<li><p>内部处理<br> 使用,Engine/ConnectionPooling/Dialect,进行数据库操作,Engine使用ConnectionPooling连接数据库,然后再通过Dialect执行SQL语句.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"># -*- coding:utf-8 -*-</div><div class="line">from sqlalchemy import create_engine</div><div class="line">  </div><div class="line">  </div><div class="line">engine = create_engine(&quot;mysql+pymysql://root:123@127.0.0.1:3306/t1&quot;, max_overflow=5)</div><div class="line">  </div><div class="line"># 执行SQL</div><div class="line"># cur = engine.execute(</div><div class="line">#     &quot;INSERT INTO hosts (host, color_id) VALUES (&apos;1.1.1.22&apos;, 3)&quot;</div><div class="line"># )</div><div class="line">  </div><div class="line"># 新插入行自增ID</div><div class="line"># cur.lastrowid</div><div class="line">  </div><div class="line"># 执行SQL</div><div class="line"># cur = engine.execute(</div><div class="line">#     &quot;INSERT INTO hosts (host, color_id) VALUES(%s, %s)&quot;,[(&apos;1.1.1.22&apos;, 3),(&apos;1.1.1.221&apos;, 3),]</div><div class="line"># )</div><div class="line">  </div><div class="line">  </div><div class="line"># 执行SQL</div><div class="line"># cur = engine.execute(</div><div class="line">#     &quot;INSERT INTO hosts (host, color_id) VALUES (%(host)s, %(color_id)s)&quot;,</div><div class="line">#     host=&apos;1.1.1.99&apos;, color_id=3</div><div class="line"># )</div><div class="line">  </div><div class="line"># 执行SQL</div><div class="line"># cur = engine.execute(&apos;select * from hosts&apos;)</div><div class="line"># 获取第一行数据</div><div class="line"># cur.fetchone()</div><div class="line"># 获取第n行数据</div><div class="line"># cur.fetchmany(3)</div><div class="line"># 获取所有数据</div><div class="line"># cur.fetchall()</div></pre></td></tr></table></figure>
+</li>
+<li><p>ORM功能使用<br> 使用ORM/Schema,Type/SQL,Expression,Language/Engine/ConnectionPooling/Dialect,所有组件对数据进行操作.根据类创建对象,对象转换成SQL,执行SQL.</p>
+ <figure class="highlight plain"><figcaption><span>创建表</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"># -*- coding:utf-8 -*-</div><div class="line">from sqlalchemy.ext.declarative import declarative_base</div><div class="line">from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint, Index</div><div class="line">from sqlalchemy.orm import sessionmaker, relationship</div><div class="line">from sqlalchemy import create_engine</div><div class="line"> </div><div class="line">engine = create_engine(&quot;mysql+pymysql://root:123@127.0.0.1:3306/t1&quot;, max_overflow=5)</div><div class="line"> </div><div class="line">Base = declarative_base()</div><div class="line"> </div><div class="line"># 创建单表</div><div class="line">class Users(Base):</div><div class="line">    __tablename__ = &apos;users&apos;</div><div class="line">    id = Column(Integer, primary_key=True)</div><div class="line">    name = Column(String(32))</div><div class="line">    extra = Column(String(16))</div><div class="line"> </div><div class="line">    __table_args__ = (</div><div class="line">    UniqueConstraint(&apos;id&apos;, &apos;name&apos;, name=&apos;uix_id_name&apos;),</div><div class="line">        Index(&apos;ix_id_name&apos;, &apos;name&apos;, &apos;extra&apos;),</div><div class="line">    )</div><div class="line"> </div><div class="line"> </div><div class="line"># 一对多</div><div class="line">class Favor(Base):</div><div class="line">    __tablename__ = &apos;favor&apos;</div><div class="line">    nid = Column(Integer, primary_key=True)</div><div class="line">    caption = Column(String(50), default=&apos;red&apos;, unique=True)</div><div class="line"> </div><div class="line"> </div><div class="line">class Person(Base):</div><div class="line">    __tablename__ = &apos;person&apos;</div><div class="line">    nid = Column(Integer, primary_key=True)</div><div class="line">    name = Column(String(32), index=True, nullable=True)</div><div class="line">    favor_id = Column(Integer, ForeignKey(&quot;favor.nid&quot;))</div><div class="line"> </div><div class="line"> </div><div class="line"># 多对多</div><div class="line">class Group(Base):</div><div class="line">    __tablename__ = &apos;group&apos;</div><div class="line">    id = Column(Integer, primary_key=True)</div><div class="line">    name = Column(String(64), unique=True, nullable=False)</div><div class="line">    port = Column(Integer, default=22)</div><div class="line"> </div><div class="line"> </div><div class="line">class Server(Base):</div><div class="line">    __tablename__ = &apos;server&apos;</div><div class="line"> </div><div class="line">    id = Column(Integer, primary_key=True, autoincrement=True)</div><div class="line">    hostname = Column(String(64), unique=True, nullable=False)</div><div class="line"> </div><div class="line"> </div><div class="line">class ServerToGroup(Base):</div><div class="line">    __tablename__ = &apos;servertogroup&apos;</div><div class="line">    nid = Column(Integer, primary_key=True, autoincrement=True)</div><div class="line">    server_id = Column(Integer, ForeignKey(&apos;server.id&apos;))</div><div class="line">    group_id = Column(Integer, ForeignKey(&apos;group.id&apos;))</div><div class="line"> </div><div class="line"> </div><div class="line">def init_db():</div><div class="line">    Base.metadata.create_all(engine)</div><div class="line"> </div><div class="line"> </div><div class="line">def drop_db():</div><div class="line">    Base.metadata.drop_all(engine)</div></pre></td></tr></table></figure>
+<p> 注:设置外检的另一种方式,<code>ForeignKeyConstraint([&#39;other_id&#39;], [&#39;othertable.other_id&#39;])</code></p>
+ <figure class="highlight plain"><figcaption><span>表结构和数据库连接</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"># -*- coding:utf-8 -*-</div><div class="line">from sqlalchemy.ext.declarative import declarative_base</div><div class="line">from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint, Index</div><div class="line">from sqlalchemy.orm import sessionmaker, relationship</div><div class="line">from sqlalchemy import create_engine</div><div class="line"></div><div class="line">engine = create_engine(&quot;mysql+pymysql://root:123@127.0.0.1:3306/t1&quot;, max_overflow=5)</div><div class="line"></div><div class="line">Base = declarative_base()</div><div class="line"></div><div class="line"># 创建单表</div><div class="line">class Users(Base):</div><div class="line">    __tablename__ = &apos;users&apos;</div><div class="line">    id = Column(Integer, primary_key=True)</div><div class="line">    name = Column(String(32))</div><div class="line">    extra = Column(String(16))</div><div class="line"></div><div class="line">    __table_args__ = (</div><div class="line">    UniqueConstraint(&apos;id&apos;, &apos;name&apos;, name=&apos;uix_id_name&apos;),</div><div class="line">        Index(&apos;ix_id_name&apos;, &apos;name&apos;, &apos;extra&apos;),</div><div class="line">    )</div><div class="line"></div><div class="line">    def __repr__(self):</div><div class="line">        return &quot;%s-%s&quot; %(self.id, self.name)</div><div class="line"></div><div class="line"># 一对多</div><div class="line">class Favor(Base):</div><div class="line">    __tablename__ = &apos;favor&apos;</div><div class="line">    nid = Column(Integer, primary_key=True)</div><div class="line">    caption = Column(String(50), default=&apos;red&apos;, unique=True)</div><div class="line"></div><div class="line">    def __repr__(self):</div><div class="line">        return &quot;%s-%s&quot; %(self.nid, self.caption)</div><div class="line"></div><div class="line">class Person(Base):</div><div class="line">    __tablename__ = &apos;person&apos;</div><div class="line">    nid = Column(Integer, primary_key=True)</div><div class="line">    name = Column(String(32), index=True, nullable=True)</div><div class="line">    favor_id = Column(Integer, ForeignKey(&quot;favor.nid&quot;))</div><div class="line">    # 与生成表结构无关，仅用于查询方便</div><div class="line">    favor = relationship(&quot;Favor&quot;, backref=&apos;pers&apos;)</div><div class="line"></div><div class="line"># 多对多</div><div class="line">class ServerToGroup(Base):</div><div class="line">    __tablename__ = &apos;servertogroup&apos;</div><div class="line">    nid = Column(Integer, primary_key=True, autoincrement=True)</div><div class="line">    server_id = Column(Integer, ForeignKey(&apos;server.id&apos;))</div><div class="line">    group_id = Column(Integer, ForeignKey(&apos;group.id&apos;))</div><div class="line">    group = relationship(&quot;Group&quot;, backref=&apos;s2g&apos;)</div><div class="line">    server = relationship(&quot;Server&quot;, backref=&apos;s2g&apos;)</div><div class="line"></div><div class="line">class Group(Base):</div><div class="line">    __tablename__ = &apos;group&apos;</div><div class="line">    id = Column(Integer, primary_key=True)</div><div class="line">    name = Column(String(64), unique=True, nullable=False)</div><div class="line">    port = Column(Integer, default=22)</div><div class="line">    # group = relationship(&apos;Group&apos;,secondary=ServerToGroup,backref=&apos;host_list&apos;)</div><div class="line"></div><div class="line"></div><div class="line">class Server(Base):</div><div class="line">    __tablename__ = &apos;server&apos;</div><div class="line"></div><div class="line">    id = Column(Integer, primary_key=True, autoincrement=True)</div><div class="line">    hostname = Column(String(64), unique=True, nullable=False)</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">def init_db():</div><div class="line">    Base.metadata.create_all(engine)</div><div class="line"></div><div class="line"></div><div class="line">def drop_db():</div><div class="line">    Base.metadata.drop_all(engine)</div><div class="line"></div><div class="line"></div><div class="line">Session = sessionmaker(bind=engine)</div><div class="line">session = Session()</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>增</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">obj = Users(name=&quot;alex0&quot;, extra=&apos;sb&apos;)</div><div class="line">session.add(obj)</div><div class="line">session.add_all([</div><div class="line">    Users(name=&quot;alex1&quot;, extra=&apos;sb&apos;),</div><div class="line">    Users(name=&quot;alex2&quot;, extra=&apos;sb&apos;),</div><div class="line">])</div><div class="line">session.commit()</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>删</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">session.query(Users).filter(Users.id &gt; 2).delete()</div><div class="line">session.commit()</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>改</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">session.query(Users).filter(Users.id &gt; 2).update(&#123;&quot;name&quot; : &quot;099&quot;&#125;)</div><div class="line">session.query(Users).filter(Users.id &gt; 2).update(&#123;Users.name: Users.name + &quot;099&quot;&#125;, synchronize_session=False)</div><div class="line">session.query(Users).filter(Users.id &gt; 2).update(&#123;&quot;num&quot;: Users.num + 1&#125;, synchronize_session=&quot;evaluate&quot;)</div><div class="line">session.commit()</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>查</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">ret = session.query(Users).all()</div><div class="line">ret = session.query(Users.name, Users.extra).all()</div><div class="line">ret = session.query(Users).filter_by(name=&apos;alex&apos;).all()</div><div class="line">ret = session.query(Users).filter_by(name=&apos;alex&apos;).first()</div><div class="line"></div><div class="line">ret = session.query(Users).filter(text(&quot;id&lt;:value and name=:name&quot;)).params(value=224, name=&apos;fred&apos;).order_by(User.id).all()</div><div class="line"></div><div class="line">ret = session.query(Users).from_statement(text(&quot;SELECT * FROM users where name=:name&quot;)).params(name=&apos;ed&apos;).all()</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>其他</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line">#　条件</div><div class="line">ret = session.query(Users).filter_by(name=&apos;alex&apos;).all()</div><div class="line">ret = session.query(Users).filter(Users.id &gt; 1, Users.name == &apos;eric&apos;).all()</div><div class="line">ret = session.query(Users).filter(Users.id.between(1, 3), Users.name == &apos;eric&apos;).all()</div><div class="line">ret = session.query(Users).filter(Users.id.in_([1,3,4])).all()</div><div class="line">ret = session.query(Users).filter(~Users.id.in_([1,3,4])).all()</div><div class="line">ret = session.query(Users).filter(Users.id.in_(session.query(Users.id).filter_by(name=&apos;eric&apos;))).all()</div><div class="line">from sqlalchemy import and_, or_</div><div class="line">ret = session.query(Users).filter(and_(Users.id &gt; 3, Users.name == &apos;eric&apos;)).all()</div><div class="line">ret = session.query(Users).filter(or_(Users.id &lt; 2, Users.name == &apos;eric&apos;)).all()</div><div class="line">ret = session.query(Users).filter(</div><div class="line">    or_(</div><div class="line">        Users.id &lt; 2,</div><div class="line">        and_(Users.name == &apos;eric&apos;, Users.id &gt; 3),</div><div class="line">        Users.extra != &quot;&quot;</div><div class="line">    )).all()</div><div class="line"></div><div class="line"></div><div class="line"># 通配符</div><div class="line">ret = session.query(Users).filter(Users.name.like(&apos;e%&apos;)).all()</div><div class="line">ret = session.query(Users).filter(~Users.name.like(&apos;e%&apos;)).all()</div><div class="line"></div><div class="line"># 限制</div><div class="line">ret = session.query(Users)[1:2]</div><div class="line"></div><div class="line"># 排序</div><div class="line">ret = session.query(Users).order_by(Users.name.desc()).all()</div><div class="line">ret = session.query(Users).order_by(Users.name.desc(), Users.id.asc()).all()</div><div class="line"></div><div class="line"># 分组</div><div class="line">from sqlalchemy.sql import func</div><div class="line"></div><div class="line">ret = session.query(Users).group_by(Users.extra).all()</div><div class="line">ret = session.query(</div><div class="line">    func.max(Users.id),</div><div class="line">    func.sum(Users.id),</div><div class="line">    func.min(Users.id)).group_by(Users.name).all()</div><div class="line"></div><div class="line">ret = session.query(</div><div class="line">    func.max(Users.id),</div><div class="line">    func.sum(Users.id),</div><div class="line">    func.min(Users.id)).group_by(Users.name).having(func.min(Users.id) &gt;2).all()</div><div class="line"></div><div class="line"># 连表</div><div class="line"></div><div class="line">ret = session.query(Users, Favor).filter(Users.id == Favor.nid).all()</div><div class="line"></div><div class="line">ret = session.query(Person).join(Favor).all()</div><div class="line"></div><div class="line">ret = session.query(Person).join(Favor, isouter=True).all()</div><div class="line"></div><div class="line"></div><div class="line"># 组合</div><div class="line">q1 = session.query(Users.name).filter(Users.id &gt; 2)</div><div class="line">q2 = session.query(Favor.caption).filter(Favor.nid &lt; 2)</div><div class="line">ret = q1.union(q2).all()</div><div class="line"></div><div class="line">q1 = session.query(Users.name).filter(Users.id &gt; 2)</div><div class="line">q2 = session.query(Favor.caption).filter(Favor.nid &lt; 2)</div><div class="line">ret = q1.union_all(q2).all()</div></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>扫着玩~~</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/img/QR.jpg" alt="YEAR WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mysql/" rel="tag"># Mysql</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/06/玩蛇笔记WEB篇之Tornado/" rel="next" title="玩蛇笔记WEB篇之Tornado">
+                <i class="fa fa-chevron-left"></i> 玩蛇笔记WEB篇之Tornado
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/31/玩蛇笔记之RabbitMQ/" rel="prev" title="玩蛇笔记之RabbitMQ">
+                玩蛇笔记之RabbitMQ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/08/08/玩蛇笔记SQL篇之Mysql/"
+           data-title="玩蛇笔记SQL篇之Mysql" data-url="https://TakeEasy.github.io/2017/08/08/玩蛇笔记SQL篇之Mysql/">
+      </div>
+    
+    <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "1243a24c6de1460d910bb72c3d9397dd",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/touxiang.jpg"
+               alt="YEAR" />
+          <p class="site-author-name" itemprop="name">YEAR</p>
+           
+              <p class="site-description motion-element" itemprop="description">行则将至</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/TakeEasy" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mysql"><span class="nav-number">1.</span> <span class="nav-text">Mysql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库的操作"><span class="nav-number">2.</span> <span class="nav-text">数据库的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表的基本操作"><span class="nav-number">3.</span> <span class="nav-text">表的基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对表数据的操作"><span class="nav-number">4.</span> <span class="nav-text">对表数据的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mysql的进阶"><span class="nav-number">5.</span> <span class="nav-text">Mysql的进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#视图"><span class="nav-number">5.1.</span> <span class="nav-text">视图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#触发器"><span class="nav-number">5.2.</span> <span class="nav-text">触发器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储过程"><span class="nav-number">5.3.</span> <span class="nav-text">存储过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数"><span class="nav-number">5.4.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务"><span class="nav-number">5.5.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#索引"><span class="nav-number">5.6.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他"><span class="nav-number">5.7.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#索引-1"><span class="nav-number">5.8.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库分页"><span class="nav-number">5.9.</span> <span class="nav-text">数据库分页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计划执行"><span class="nav-number">5.10.</span> <span class="nav-text">计划执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#慢日志查询"><span class="nav-number">5.11.</span> <span class="nav-text">慢日志查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python操作Mysql"><span class="nav-number">6.</span> <span class="nav-text">Python操作Mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用pymysql模块操作"><span class="nav-number">6.1.</span> <span class="nav-text">用pymysql模块操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQLAchemy操作数据库"><span class="nav-number">6.2.</span> <span class="nav-text">SQLAchemy操作数据库</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YEAR</span>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yearblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("wJSzMht9jhmY1dOMTNb4xd7K-gzGzoHsz", "Dng0OEp5yP5twrLIJIA0Wx7x");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
