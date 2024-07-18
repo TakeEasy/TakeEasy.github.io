@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2024/07/14/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>某学城项目(1)</title>
+    <url>/2024/07/18/%E6%9F%90%E5%AD%A6%E5%9F%8E%E9%A1%B9%E7%9B%AE-1/</url>
+    <content><![CDATA[<hr>
+<h1 id="开发环境准备"><a href="#开发环境准备" class="headerlink" title="开发环境准备"></a>开发环境准备</h1><h2 id="1-pip换源"><a href="#1-pip换源" class="headerlink" title="1 pip换源"></a>1 pip换源</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1 pip3 install pymysql   国外很慢</span><br><span class="line">2 pip3 install pymysql -i  地址</span><br><span class="line">3 配置，以后pip3 install全走配好的源</span><br><span class="line">	-来到%APPDATA%</span><br><span class="line">    -创建一个pip文件夹</span><br><span class="line">    -新建一个文件pip.ini</span><br><span class="line">    -写入</span><br><span class="line">        [global]</span><br><span class="line">        index-url = http://pypi.douban.com/simple</span><br><span class="line">        [install]</span><br><span class="line">        use-mirrors =true</span><br><span class="line">        mirrors =http://pypi.douban.com/simple/</span><br><span class="line">        trusted-host =pypi.douban.com</span><br></pre></td></tr></table></figure>
+<h2 id="2-虚拟环境搭建"><a href="#2-虚拟环境搭建" class="headerlink" title="2 虚拟环境搭建"></a>2 虚拟环境搭建</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1 不同的项目依赖不同的模块版本，不能共用一套环境，虚拟环境</span><br><span class="line">2 在系统的python环境中安装</span><br><span class="line">	-下载</span><br><span class="line">	  pip3 install virtualenv</span><br><span class="line">    pip3 install virtualenvwrapper-win</span><br><span class="line">	-修改环境变量</span><br><span class="line">    -WORKON_HOME: D:\Virtualenvs</span><br><span class="line">    -python安装路径，scripts文件下执行virtualenvwrapper.bat</span><br><span class="line">3 使用：</span><br><span class="line">	-workon  #列出有的虚拟环境（aaa）</span><br><span class="line">    -workon aaa  #使用这个虚拟环境</span><br><span class="line">    -mkvirtualenv -p python3 luffy # 创建虚拟环境</span><br><span class="line">    -rmvirtualenv 虚拟环境名字 # 删除虚拟环境</span><br><span class="line">4 安装django环境</span><br><span class="line">	pip install django==2.2.2</span><br><span class="line">5 基于虚拟环境创建项目（不要再pycharm中选择虚拟环境了）</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-后台创建，配置修改，目录变更"><a href="#3-后台创建，配置修改，目录变更" class="headerlink" title="3 后台创建，配置修改，目录变更"></a>3 后台创建，配置修改，目录变更</h2><ul>
+<li>创建Django项目之后 需要对目录进行修整<ol>
+<li>apps目录 放所有的app 在原始app里 而不是根目录</li>
+<li>settings目录 放setting文件 可以分成 开发环境和正式环境</li>
+<li>根目录创建logs文件夹和scripts文件夹,原始app里创建media文件夹<img src="/2024/07/18/%E6%9F%90%E5%AD%A6%E5%9F%8E%E9%A1%B9%E7%9B%AE-1/projectdir.png" class="" title="project dirs"></li>
+</ol>
+</li>
+<li>由于改变了文件夹的结构 所以要在setting文件里 进行相应设置 例如添加环境变量和改变读取setting文件的位置</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 在控制台直接指向项目 python manage.py runserver ---》manage.py的内容要改</span></span><br><span class="line">os.environ.setdefault(<span class="string">&#x27;DJANGO_SETTINGS_MODULE&#x27;</span>, <span class="string">&#x27;luffyapi.settings.dev&#x27;</span>)</span><br><span class="line"><span class="comment"># 项目上线，走的不是manage.py---》uwsgi.py,需要修改</span></span><br><span class="line">os.environ.setdefault(<span class="string">&#x27;DJANGO_SETTINGS_MODULE&#x27;</span>, <span class="string">&#x27;luffyapi.settings.dev&#x27;</span>)</span><br><span class="line"><span class="comment"># 在dev.py中 需要把原始app目录和settings目录都加入到环境变量中</span></span><br><span class="line">BASE_DIR = Path(__file__).resolve().parent.parent</span><br><span class="line">sys.path.append(<span class="built_in">str</span>(BASE_DIR))</span><br><span class="line">sys.path.append(<span class="built_in">str</span>(BASE_DIR / <span class="string">&#x27;apps&#x27;</span>))</span><br><span class="line"><span class="comment"># 国际化 in dev.py</span></span><br><span class="line">LANGUAGE_CODE = <span class="string">&#x27;zh-hans&#x27;</span></span><br><span class="line">TIME_ZONE = <span class="string">&#x27;Asia/shanghai&#x27;</span></span><br><span class="line">USE_TZ = <span class="literal">False</span></span><br><span class="line"><span class="comment"># 创建app：startapp在哪执行，就把app创建在哪</span></span><br><span class="line">python ../../manage.py startapp home</span><br><span class="line"><span class="comment"># 注册app 由于添加了环境变量 就可以直接正常添加</span></span><br><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">&#x27;django.contrib.admin&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.auth&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.contenttypes&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.sessions&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.messages&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.staticfiles&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;user.apps.UserConfig&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;home.apps.HomeConfig&#x27;</span>,</span><br><span class="line">]</span><br><span class="line"><span class="comment"># 配置media目录和url</span></span><br><span class="line">MEDIA_URL = <span class="string">&#x27;media/&#x27;</span></span><br><span class="line">MEDIA_ROOT = BASE_DIR / <span class="string">&#x27;media&#x27;</span></span><br><span class="line"><span class="comment"># 然后在urls中配置media开放</span></span><br><span class="line"><span class="keyword">from</span> django.views.static <span class="keyword">import</span> serve</span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&#x27;admin/&#x27;</span>, admin.site.urls),</span><br><span class="line">    re_path(<span class="string">r&quot;^media/(?P&lt;path&gt;.*)$&quot;</span>, serve, &#123;<span class="string">&#x27;document_root&#x27;</span>: settings.MEDIA_ROOT&#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>tips 改变了目录结构后 你的pycharm 不知道你改变了根目录 所以一些导入会误报错 可以通过 标记为根目录解决</p>
+</blockquote>
+<img src="/2024/07/18/%E6%9F%90%E5%AD%A6%E5%9F%8E%E9%A1%B9%E7%9B%AE-1/markassourcesroot.png" class="" title="mark as root">
+
+<h2 id="4-数据库配置"><a href="#4-数据库配置" class="headerlink" title="4 数据库配置"></a>4 数据库配置</h2><ul>
+<li>创建database,创建能使用这个database的user</li>
+<li>在setting文件中配置数据库链接 django默认用mysqlclient,如果想用pymysql需要加install代码<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 项目依赖的数据库，luffyapi</span></span><br><span class="line">create database luffyapi;</span><br><span class="line"><span class="comment"># 创建数据库用户，并且授予luffyapi这个库的权限</span></span><br><span class="line">grant <span class="built_in">all</span> privileges on luffyapi.* to <span class="string">&#x27;luffyapi&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified by <span class="string">&#x27;Luffy123?&#x27;</span>;</span><br><span class="line">flush privileges;</span><br><span class="line"><span class="comment"># setting文件中配置</span></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">&#x27;default&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;ENGINE&#x27;</span>: <span class="string">&#x27;django.db.backends.mysql&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;NAME&#x27;</span>: <span class="string">&#x27;luffyapi&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;USER&#x27;</span>: <span class="string">&#x27;luffyapi&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;PASSWORD&#x27;</span>: <span class="string">&#x27;Luffy123?&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;HOST&#x27;</span>: <span class="string">&#x27;127.0.0.1&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;PORT&#x27;</span>: <span class="string">&#x27;3306&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;CHARSET&#x27;</span>: <span class="string">&#x27;utf8&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 如果想用pymysql</span></span><br><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line">pymysql.install_as_MySQLdb()</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="5-User表配置"><a href="#5-User表配置" class="headerlink" title="5 User表配置"></a>5 User表配置</h2><ul>
+<li>如果想用django的内置auth的user表,必须在数据库迁移命令之前操作好,否则按下面操作<ol>
+<li>把所有app下的迁移文件全部删除 包括 admin auth app下的</li>
+<li>删除数据库 删之前可以导出数据</li>
+<li>重新迁移</li>
+</ol>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Django</category>
+      </categories>
+      <tags>
+        <tag>django-rest-framework</tag>
+        <tag>Python</tag>
+        <tag>Django</tag>
+        <tag>环境配置</tag>
+      </tags>
+  </entry>
+</search>
