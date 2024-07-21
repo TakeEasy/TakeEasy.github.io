@@ -52,13 +52,18 @@
 </ol>
 </li>
 </ul>
+<h2 id="6-Vue前端准备"><a href="#6-Vue前端准备" class="headerlink" title="6 Vue前端准备"></a>6 Vue前端准备</h2><ul>
+<li>安装node.js</li>
+<li>运行相关命令 初始化一个Vue项目<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm create vue@latest</span><br></pre></td></tr></table></figure></li>
+<li>初始化的选项 选上Pinia 用作状态管理 选上vue-router 用作单页面路由</li>
+<li>目录介绍<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public</span><br><span class="line">    -favicon.ico   # </span><br><span class="line">src</span><br><span class="line">    -assets  #静态文件，js，css，img</span><br><span class="line">    -components # 小组件，头部组件，尾部组件</span><br><span class="line">    -router     # 路由相关</span><br><span class="line">    -store      # vuex相关，状态管理器，临时存储数据的地方</span><br><span class="line">    -views      # 页面组件</span><br><span class="line">    -App.vue    # 根组件</span><br><span class="line">    -main.js    # 配置文件（跟django的setting一样）</span><br><span class="line">-index.html    #整个项目的单页面</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">#任何一个组件都有三部分</span><br><span class="line">  &lt;template&gt;</span><br><span class="line">      #html相关</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">    # css相关</span><br><span class="line">  &lt;/style&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">    # js相关</span><br><span class="line">    &lt;/script&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
 ]]></content>
       <categories>
         <category>Django</category>
       </categories>
       <tags>
         <tag>django-rest-framework</tag>
-        <tag>Python</tag>
         <tag>Django</tag>
         <tag>环境配置</tag>
       </tags>
