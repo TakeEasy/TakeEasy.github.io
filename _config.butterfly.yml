@@ -234,7 +234,7 @@ aside:
       link: https://github.com/TakeEasy
   card_announcement:
     enable: true
-    content: This is my Blog
+    content: 哈哈哈~~~自用博客哦~~~
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all
